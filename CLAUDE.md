@@ -54,7 +54,7 @@ Profiles follow the naming convention `.env-<ModelName>.<Quantization>`. Current
 | `PROFILES.md` | Bundled model catalog, source links, and profile-specific caveats |
 | `AGENTS.md` | Technical reference for agents/automation |
 | `GGUF.md` | Explainer: what GGUF is and why to run locally |
-| `TAILSCALE.md` | Private tailnet access and multi-machine RPC pooling with Tailscale |
+| `TAILSCALE.md` | Tailscale guide for private access and multi-machine RPC pooling via llama.cpp |
 | `OPENCODE.md` | Integration with OpenCode IDE |
 | `VSCODE.md` | Integration with VS Code (Copilot Chat BYOM, Continue, Roo Cline) |
 | `GEMINI.md` | Agent context and instructions for Gemini CLI |

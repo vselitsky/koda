@@ -126,7 +126,7 @@ The bundled profile catalog lives in [PROFILES.md](./PROFILES.md). That file inc
 ## Integrations
 
 - [OpenCode Integration](./OPENCODE.md)
-- [Tailscale + Koda](./TAILSCALE.md)
+- [Tailscale + Koda (via llama.cpp)](./TAILSCALE.md)
 - [VS Code Integration](./VSCODE.md)
 
 ## License

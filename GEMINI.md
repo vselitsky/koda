@@ -39,7 +39,7 @@ Overrides can be passed inline to any `make` target:
 - **Adding Models:** Create `.env-<name>.<quant>` with `HF_REPO`, `MODEL_DIR`, and `MODEL_FILE`. Add `DOWNLOAD_INCLUDE` for sharded GGUF models.
 - **Integrations:**
   - [OpenCode](./OPENCODE.md)
-  - [Tailscale + Koda](./TAILSCALE.md)
+  - [Tailscale + Koda (via llama.cpp)](./TAILSCALE.md)
   - [VS Code](./VSCODE.md) (Continue, Roo Code)
 - **Learning:**
   - [Bundled Profiles](./PROFILES.md)

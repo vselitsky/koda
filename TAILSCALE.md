@@ -1,4 +1,4 @@
-# Tailscale + Koda
+# Tailscale + Koda (via llama.cpp)
 
 This guide covers the practical Koda setup for:
 
