@@ -27,12 +27,12 @@ Continue is a popular open-source AI autopilot for VS Code.
     }
     ```
 
-### [Roo Code](https://marketplace.visualstudio.com/items?itemName=RooCode.roocode)
+### [Roo Cline](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
 
-Roo Code (formerly Roo Cline) is an autonomous coding agent.
+Roo Cline is an autonomous coding agent that supports OpenAI-compatible backends.
 
-1.  **Install:** Search for "Roo Code" in the Marketplace and install it.
-2.  **Configure:** Click the "Settings" button in the Roo Code sidebar.
+1.  **Install:** Search for "Roo Cline" in the Marketplace and install it.
+2.  **Configure:** Click the "Settings" button in the Roo Cline sidebar.
 3.  **API Provider:** Select **OpenAI Compatible**.
 4.  **Base URL:** Enter `http://localhost:8080/v1`.
 5.  **Model ID:** Enter the model name from your `.env` file (e.g., `qwen3.5-27b`).
