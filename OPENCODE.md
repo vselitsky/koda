@@ -9,6 +9,7 @@ This guide explains how to use OpenCode with the local inference server provided
    ```bash
    make serve ENV=.env-Qwen3.5-27B.Q4_K_M
    ```
+   This starts both the browser WebUI at `http://localhost:8080` and the OpenAI-compatible API at `http://localhost:8080/v1`.
 
 2. **Open the OpenCode config file:**
    Open your OpenCode configuration file in your favorite text editor:
@@ -43,3 +44,5 @@ This guide explains how to use OpenCode with the local inference server provided
 ### Compatibility
 
 Since the server is OpenAI-compatible, any client can use the same base URL (`http://localhost:8080/v1`) with any non-empty API key to interact with the running model.
+
+Koda defaults to the GGUF model's embedded Jinja chat template, so most models do not need extra prompt-format configuration in OpenCode.
