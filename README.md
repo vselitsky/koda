@@ -23,14 +23,6 @@ When `make serve` is running:
 - WebUI: `http://localhost:8080`
 - OpenAI-compatible API: `http://localhost:8080/v1/chat/completions`
 
-## Primary Environments
-
-Koda is mainly built for:
-
-- macOS on Apple Silicon
-- Linux with NVIDIA GPU (via CUDA)
-- Linux with AMD GPU (via ROCm/OpenCL)
-
 ## Commands
 
 ```bash
@@ -48,6 +40,14 @@ make serve ENV=.env-Qwen3.5-27B.Q4_K_M METRICS=1
 make serve ENV=.env-gpt-oss-120b.MXFP4 RPC=10.0.0.12:50052
 make chat  ENV=.env-gpt-oss-120b.MXFP4 RPC=10.0.0.12:50052
 ```
+
+## Primary Environments
+
+Koda is mainly built for:
+
+- macOS on Apple Silicon
+- Linux with NVIDIA GPU (via CUDA)
+- Linux with AMD GPU (via ROCm/OpenCL)
 
 ## Docs
 

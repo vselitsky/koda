@@ -31,6 +31,31 @@ The usual layout is:
 3. The head node uses `RPC=...` to point `llama-server` at those workers.
 4. Clients talk only to the head node.
 
+```mermaid
+graph TD
+    subgraph "Tailscale Tailnet"
+        subgraph "Head Node (e.g. mac-studio)"
+            Koda[Koda make serve]
+            LS[llama-server]
+            Koda --> LS
+        end
+
+        subgraph "Worker Node 1 (e.g. linux-4090-1)"
+            W1[RPC Worker]
+        end
+
+        subgraph "Worker Node 2 (e.g. linux-4090-2)"
+            W2[RPC Worker]
+        end
+
+        LS -- "RPC (Port 50052)" --> W1
+        LS -- "RPC (Port 50052)" --> W2
+    end
+
+    Client([Client / Browser]) -- "HTTP (Port 8080)" --> LS
+    TS[tailscale serve] -.-> Client
+```
+
 Example:
 
 - head node: `mac-studio`
