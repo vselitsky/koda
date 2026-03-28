@@ -30,6 +30,8 @@ Three-layer configuration system:
 2. **`.env-<model>.<quant>`** — Model-specific profile defining `HF_REPO`, `MODEL_DIR`, `MODEL_FILE`, and optionally `DOWNLOAD_INCLUDE`
 3. **Inline overrides** — Command-line variable assignments override both layers
 
+Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
+
 The Makefile validates that `HF_REPO`, `MODEL_DIR`, and `MODEL_FILE` are set for `serve`, `chat`, and `download`; `check` only verifies local dependencies.
 
 ## Bundled Model Profiles

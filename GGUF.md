@@ -26,6 +26,16 @@ You already bought the hardware. Why pay every time you ask a question? Local LL
 ### 4. Customization (The "Mad Scientist" Option) 🧪
 Want to run an "Uncensored" model? Want to try a model specifically trained to speak like a 17th-century pirate? Want to cram 100k tokens of context into a model just to see if your RAM catches fire? (Please don't actually set your RAM on fire). You're in control.
 
+## Hardware Acceleration 🏎️
+
+GGUF is designed to offload as much work as possible to your GPU. Koda supports the major acceleration backends:
+
+- **Apple Silicon (Metal):** Blazing fast on Macs with unified memory.
+- **NVIDIA (CUDA):** The industry standard for Linux and Windows.
+- **AMD (ROCm/OpenCL):** High-performance support for Radeon GPUs on Linux.
+
+If your GPU doesn't have enough VRAM to hold the entire model, `llama.cpp` will automatically split the work between your GPU and CPU.
+
 ## Summary
 GGUF is the format that makes local AI possible for mere mortals without server farms. It’s fast, it’s private, and it’s yours.
 

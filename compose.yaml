@@ -3,7 +3,10 @@ name: koda
 services:
   koda:
     container_name: ${CONTAINER_NAME:-koda}
+    # For NVIDIA or CPU-only:
     image: ${LLAMA_CPP_IMAGE:-ghcr.io/ggml-org/llama.cpp:server}
+    # For AMD (ROCm):
+    # image: ${LLAMA_CPP_IMAGE:-ghcr.io/ggml-org/llama.cpp:server-rocm}
     restart: unless-stopped
     entrypoint: ["/bin/sh", "/entrypoints/compose-entrypoint.sh"]
     env_file:

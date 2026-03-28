@@ -28,7 +28,8 @@ When `make serve` is running:
 Koda is mainly built for:
 
 - macOS on Apple Silicon
-- Linux with NVIDIA GPU
+- Linux with NVIDIA GPU (via CUDA)
+- Linux with AMD GPU (via ROCm/OpenCL)
 
 ## Commands
 

@@ -6,7 +6,7 @@ Provides commands and configuration for running GGUF models locally via llama.cp
 
 The main user guide is `README.md`. Bundled model catalog and profile-specific caveats live in `PROFILES.md`.
 
-Treat macOS on Apple Silicon and Linux with NVIDIA GPUs as the primary target environments.
+Treat macOS on Apple Silicon, Linux with NVIDIA GPUs (CUDA), and Linux with AMD GPUs (ROCm/OpenCL) as the primary target environments.
 
 There is also a Compose deployment path in `compose.yaml`, intended for reverse-proxy setups such as Traefik.
 
