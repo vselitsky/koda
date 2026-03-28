@@ -40,7 +40,6 @@ Profiles follow the naming convention `.env-<ModelName>.<Quantization>`. Current
 
 - **Reasoning models**: Output appears in `<think>...</think>` blocks before the final answer
 - **Context window**: `CTX=0` uses the model's native window; set explicitly to constrain RAM/VRAM
-- **GPU offload**: `GPU_LAYERS=99` offloads all layers; set to `0` to run on CPU only
 - **GPU offload**: `GPU_LAYERS=-1` asks `llama.cpp` to offload as many layers as possible; set `0` to run on CPU only
 - **Prompt format**: Koda prefers the GGUF model's embedded Jinja template by default; set `PROMPT_FORMAT=template` to force `CHAT_TPL`
 - **RPC offload**: Set `RPC=<host:port>` to pass `--rpc` through to `llama-server` or `llama-cli`
@@ -57,6 +56,7 @@ Profiles follow the naming convention `.env-<ModelName>.<Quantization>`. Current
 | `AGENTS.md` | Technical reference for agents/automation |
 | `GGUF.md` | Explainer: what GGUF is and why to run locally |
 | `compose.yaml` | Docker Compose deployment with Traefik labels on the external `traefik` network |
+| `scripts/compose-entrypoint.sh` | Compose runtime wrapper that maps Koda env vars to `llama-server` flags |
 | `TAILSCALE.md` | Tailscale guide for private access and multi-machine RPC pooling via llama.cpp |
 | `OPENCODE.md` | Integration with OpenCode IDE |
 | `VSCODE.md` | Integration with VS Code (Copilot Chat BYOM, Continue, Roo Cline) |

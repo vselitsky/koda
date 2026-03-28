@@ -14,7 +14,7 @@ This project provides a standardized environment and set of commands for running
 
 ## Key Commands
 
-All commands require an `ENV` variable pointing to a model's `.env` file.
+`make download`, `make serve`, and `make chat` require an `ENV` variable pointing to a model's `.env` file. `make check` does not.
 
 | Command | Description |
 | --- | --- |

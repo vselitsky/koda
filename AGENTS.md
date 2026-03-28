@@ -8,6 +8,8 @@ The main user guide is `README.md`. Bundled model catalog and profile-specific c
 
 Treat macOS on Apple Silicon and Linux with NVIDIA GPUs as the primary target environments.
 
+There is also a Compose deployment path in `compose.yaml`, intended for reverse-proxy setups such as Traefik.
+
 ## Key Binaries
 
 Installed via Homebrew at `/opt/homebrew/bin/`:
