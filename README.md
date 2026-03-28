@@ -63,18 +63,19 @@ Set in the env file or inline. Model-specific variables (`HF_REPO`, `MODEL_DIR`,
 | `HF_REPO` | — | HuggingFace repo (`org/repo-GGUF`) |
 | `MODEL_DIR` | — | Local model directory |
 | `MODEL_FILE` | — | Model filename (e.g. `model.Q4_K_M.gguf`) |
-| `CTX` | `8192` | Context window size |
+| `CTX` | `0` | Context window size (`0` = model native) |
 | `HOST` | `0.0.0.0` | Server bind address |
 | `PORT` | `8080` | Server port |
 | `GPU_LAYERS` | `99` | Layers offloaded to GPU |
 | `TEMP` | `0.6` | Sampling temperature (chat) |
 | `TOP_P` | `0.95` | Top-p sampling (chat) |
 
-## OpenCode
+> **Note on CTX:** Setting `CTX=0` (default) uses the model's native context window. You can manually set this to a lower value to save RAM/VRAM, or a higher value if the model and your hardware support it. Use inline overrides to test different sizes: `make serve ENV=.env-file CTX=16384`.
 
-Start the server first, then open opencode and select **llama.cpp** as the provider and the model name.
+## Integrations
 
-The provider is configured in `~/.config/opencode/opencode.json` pointing to `http://127.0.0.1:8080/v1`. Any OpenAI-compatible client can use the same base URL with any non-empty API key.
+- [OpenCode Integration](./OPENCODE.md)
+- [VS Code Integration](./VSCODE.md)
 
 ## License
 

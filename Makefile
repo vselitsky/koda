@@ -1,3 +1,5 @@
+-include .env
+
 ifdef ENV
 -include $(ENV)
 endif
@@ -13,14 +15,6 @@ ifndef MODEL_FILE
 $(error MODEL_FILE is not set. Example: make $(MAKECMDGOALS) ENV=.env-Qwen3.5-27B.Q4_K_M)
 endif
 endif
-
-CTX        ?= 0
-HOST       ?= 0.0.0.0
-PORT       ?= 8080
-GPU_LAYERS ?= 99
-CHAT_TPL   ?= chatml
-TEMP       ?= 0.6
-TOP_P      ?= 0.95
 
 MODEL := $(MODEL_DIR)/$(MODEL_FILE)
 

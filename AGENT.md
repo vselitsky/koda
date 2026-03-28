@@ -14,9 +14,16 @@ Installed via Homebrew at `/opt/homebrew/bin/`:
 | `llama-server` | OpenAI-compatible HTTP server |
 | `hf` | HuggingFace model downloader |
 
-## Model Location
+## Configuration & Defaults
 
-Models are stored under `~/models/` by default, in a subdirectory per model set via `MODEL_DIR` in the env file.
+Defaults are defined in the root `.env` file and loaded by the `Makefile`. Model-specific settings are in `.env-<model>.<quant>` files.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `CTX` | `0` | Context window size (`0` = model native) |
+| `HOST` | `0.0.0.0` | Server bind address |
+| `PORT` | `8080` | Server port |
+| `GPU_LAYERS` | `99` | Layers offloaded to GPU |
 
 ## Running the Model
 
@@ -30,8 +37,6 @@ Use `make` targets — do not invoke `llama-cli` or `llama-server` directly:
 
 All targets require an env file: `make serve ENV=.env-Qwen3.5-27B.Q4_K_M`
 
-Env files are named `.env-<model>.<quant>` — no default. See README.md for all bundled profiles, the full variable reference, and how to add a new model.
-
 ## No Build Steps
 
 llama.cpp is pre-built via Homebrew. There is nothing to compile or install beyond what's in the Requirements section of README.md.
@@ -41,4 +46,4 @@ llama.cpp is pre-built via Homebrew. There is nothing to compile or install beyo
 - Uses ChatML chat template (`--chat-template chatml`)
 - Reasoning output appears in `<think>...</think>` blocks before the final answer
 - Recommended sampling: `--temp 0.6 --top-p 0.95`
-- Context window: up to 262K tokens (use `CTX=` to set what your RAM supports)
+- Context window: uses native size by default (`CTX=0`). Use `CTX=` as an inline override to adjust for RAM/VRAM constraints.
