@@ -29,14 +29,14 @@ Then run `make download ENV=.env-<model>.<quant>` to fetch it.
 
 | File | Model |
 | --- | --- |
-| `.env-Qwen3.5-27B.Q4_K_M` | [Qwen3.5-27B Claude 4.6 Opus Reasoning Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled) Q4_K_M |
-| `.env-Qwen3.5-27B.Q8_0` | [Qwen3.5-27B Claude 4.6 Opus Reasoning Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled) Q8_0 |
-| `.env-Qwen3.5-35B-A3B.Q4_K_M` | [Qwen3.5-35B-A3B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive) Q4_K_M |
-| `.env-Qwen3.5-35B-A3B.Q8_0` | [Qwen3.5-35B-A3B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive) Q8_0 |
-| `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` | [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) Q4_K_M (via unsloth) |
-| `.env-Qwen3.5-35B-A3B-Qwen.Q8_0` | [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) Q8_0 (via unsloth) |
-| `.env-Qwen3.5-9B.Q4_K_M` | [Qwen3.5-9B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive) Q4_K_M |
-| `.env-Qwen3.5-9B.Q8_0` | [Qwen3.5-9B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive) Q8_0 |
+| `.env-Qwen3.5-27B.Q4_K_M` | [Qwen3.5-27B Claude 4.6 Opus Reasoning Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled) |
+| `.env-Qwen3.5-27B.Q8_0` | [Qwen3.5-27B Claude 4.6 Opus Reasoning Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled) |
+| `.env-Qwen3.5-35B-A3B.Q4_K_M` | [Qwen3.5-35B-A3B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive) |
+| `.env-Qwen3.5-35B-A3B.Q8_0` | [Qwen3.5-35B-A3B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive) |
+| `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` | [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) |
+| `.env-Qwen3.5-35B-A3B-Qwen.Q8_0` | [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) |
+| `.env-Qwen3.5-9B.Q4_K_M` | [Qwen3.5-9B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive) |
+| `.env-Qwen3.5-9B.Q8_0` | [Qwen3.5-9B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive) |
 
 ## Usage
 
