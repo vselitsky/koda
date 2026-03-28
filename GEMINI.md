@@ -8,6 +8,7 @@ This project provides a standardized environment and set of commands for running
 - **Model Distribution:** HuggingFace GGUF models via `hf` CLI.
 - **Configuration:** 
   - `Makefile`: Central orchestration.
+  - `compose.yaml`: Containerized deployment path with Traefik labels on the external `traefik` network.
   - `.env`: Global defaults.
   - `.env-<model>.<quant>`: Model-specific settings.
 

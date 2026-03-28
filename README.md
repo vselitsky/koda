@@ -22,6 +22,22 @@ When `make serve` is running:
 - `llama.cpp`: [installation docs](https://github.com/ggml-org/llama.cpp/blob/master/docs/install.md)
 - `hf` CLI: [installation docs](https://huggingface.co/docs/huggingface_hub/en/guides/cli)
 
+## Support Matrix
+
+| Environment | Status | Notes |
+| --- | --- | --- |
+| macOS on Apple Silicon | First-class | Mainline Koda path. Homebrew-installed `llama.cpp` is the default assumption. |
+| Linux with NVIDIA GPU | First-class | Good fit for larger GGUF profiles and RPC worker nodes. |
+| Linux CPU-only | Supported | Works for smaller models and validation flows, but throughput may be limited. |
+| Linux with AMD GPU | Best effort | Depends on your `llama.cpp` build and backend maturity. |
+| Windows | Best effort | Not a primary Koda target today; docs and examples are not Windows-first. |
+
+Support policy:
+
+- first-class means Koda docs and examples are written with that environment in mind
+- supported means the workflow should work, but it is not the main optimization target
+- best effort means the project does not promise polished setup or troubleshooting coverage
+
 ## Commands
 
 ```bash
@@ -38,6 +54,38 @@ make serve ENV=.env-Qwen3.5-27B.Q4_K_M PORT=9090
 make serve ENV=.env-Qwen3.5-27B.Q4_K_M METRICS=1
 make serve ENV=.env-gpt-oss-120b.MXFP4 RPC=10.0.0.12:50052
 make chat  ENV=.env-gpt-oss-120b.MXFP4 RPC=10.0.0.12:50052
+```
+
+## Compose
+
+Koda also ships a Docker Compose path using the official upstream `llama.cpp` container image and Traefik labels.
+
+Files:
+
+- [compose.yaml](./compose.yaml)
+
+Typical flow:
+
+```bash
+docker compose --env-file .env up -d
+```
+
+Notes:
+
+- the compose path is an alternative to the `Makefile`, not a replacement
+- Traefik labels are included by default
+- the compose service expects an external Traefik network named `traefik` unless you override `TRAEFIK_NETWORK`
+- compose reads the root `.env` file by default
+- set `MODEL_DIR` and `MODEL_FILE` in the root `.env` when using compose
+- `MODEL_DIR` must be an absolute host path when used with compose
+- compose can also load a model profile file via `ENV_FILE=.env-<model>.<quant>`, but that does not replace the need for root `.env` values during compose-time interpolation
+- the compose service uses `expose: 8080` only; Traefik is expected to terminate on ports `80` / `443`
+
+Examples:
+
+```bash
+docker compose --env-file .env up -d
+ENV_FILE=.env-gpt-oss-20b.MXFP4 docker compose --env-file .env up -d
 ```
 
 ## Configuration
@@ -109,6 +157,7 @@ Set in the env file or inline. Model-specific variables (`HF_REPO`, `MODEL_DIR`,
 
 - If you expose `llama-server` beyond localhost, put it behind a reverse proxy or API gateway that enforces rate limits, timeouts, and request size limits.
 - Enable metrics with `METRICS=1` if you want Prometheus-compatible monitoring from `llama-server`.
+- The compose setup includes Traefik labels and joins the external `traefik` network so you can route `llama-server` through an existing reverse proxy stack.
 
 ## Bundled Profiles
 

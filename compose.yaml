@@ -1,0 +1,31 @@
+name: koda
+
+services:
+  koda:
+    container_name: ${CONTAINER_NAME:-koda}
+    image: ${LLAMA_CPP_IMAGE:-ghcr.io/ggml-org/llama.cpp:server}
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "/entrypoints/compose-entrypoint.sh"]
+    env_file:
+      - .env
+      - ${ENV_FILE:-/dev/null}
+    volumes:
+      - ${MODEL_DIR:?set MODEL_DIR in .env or your shell}:/models:ro
+      - ./scripts/compose-entrypoint.sh:/entrypoints/compose-entrypoint.sh:ro
+    expose:
+      - "8080"
+    networks:
+      - default
+      - traefik
+    labels:
+      traefik.enable: ${TRAEFIK_ENABLE:-true}
+      traefik.docker.network: ${TRAEFIK_NETWORK:-traefik}
+      traefik.http.routers.koda.rule: Host(`${TRAEFIK_HOST:-koda.localhost}`)
+      traefik.http.routers.koda.entrypoints: ${TRAEFIK_ENTRYPOINTS:-websecure}
+      traefik.http.routers.koda.tls: ${TRAEFIK_TLS:-true}
+      traefik.http.services.koda.loadbalancer.server.port: "8080"
+
+networks:
+  traefik:
+    external: true
+    name: ${TRAEFIK_NETWORK:-traefik}

@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Koda is a configuration and orchestration tool for running quantized GGUF models locally via `llama.cpp`. `make serve` exposes the built-in WebUI at `http://localhost:8080` and an OpenAI-compatible HTTP API at `http://localhost:8080/v1`. There is no application code, no build step, and no test suite.
 
+There is also a containerized deployment path via `compose.yaml`, built around the official `ghcr.io/ggml-org/llama.cpp` server image.
+
 ## Commands
 
 ```bash
@@ -54,6 +56,7 @@ Profiles follow the naming convention `.env-<ModelName>.<Quantization>`. Current
 | `PROFILES.md` | Bundled model catalog, source links, and profile-specific caveats |
 | `AGENTS.md` | Technical reference for agents/automation |
 | `GGUF.md` | Explainer: what GGUF is and why to run locally |
+| `compose.yaml` | Docker Compose deployment with Traefik labels on the external `traefik` network |
 | `TAILSCALE.md` | Tailscale guide for private access and multi-machine RPC pooling via llama.cpp |
 | `OPENCODE.md` | Integration with OpenCode IDE |
 | `VSCODE.md` | Integration with VS Code (Copilot Chat BYOM, Continue, Roo Cline) |

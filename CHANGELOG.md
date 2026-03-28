@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bundled profile for `gpt-oss-120b` via `ggml-org/gpt-oss-120b-GGUF`
 - Bundled profile for `DeepSeek-R1-Distill-Qwen-32B` via `ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF`
 - Bundled profile for `Kimi-K2.5` via `AesSedai/Kimi-K2.5-GGUF`
+- Added `compose.yaml` as a containerized deployment path using the official upstream `llama.cpp` image
+- Added Traefik labels for the Compose deployment path
+- Simplified the Compose deployment path to rely on `.env`, `expose`, and the external `traefik` network
 
 ### Changed
 
@@ -36,5 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `METRICS=1` support for exposing llama-server metrics
 - Added deployment guidance to keep exposed servers behind a reverse proxy or gateway
 - Added `TAILSCALE.md` for private tailnet access and multi-machine RPC pooling guidance
+- Added an explicit environment support matrix to `README.md`
 
 [Unreleased]: https://github.com/change/me/compare/HEAD
