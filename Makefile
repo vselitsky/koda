@@ -20,10 +20,19 @@ MODEL := $(MODEL_DIR)/$(MODEL_FILE)
 
 .PHONY: help download serve chat
 
+ifeq ($(PROMPT_FORMAT),jinja)
+PROMPT_ARGS := --jinja
+else
+PROMPT_ARGS := --chat-template $(CHAT_TPL)
+endif
+
+SERVER_ARGS := $(strip $(SERVER_EXTRA_ARGS))
+CHAT_ARGS := $(strip $(CHAT_EXTRA_ARGS))
+
 help:
 	@echo "Usage: make <target> ENV=<file>"
 	@echo ""
-	@echo "  serve     Start OpenAI-compatible API server (http://localhost:$(PORT)/v1)"
+	@echo "  serve     Start OpenAI-compatible API server + built-in WebUI (http://localhost:$(PORT))"
 	@echo "  chat      Interactive terminal chat"
 	@echo "  download  Download model via hf CLI"
 	@echo ""
@@ -38,10 +47,13 @@ serve:
 	llama-server \
 	  -m $(MODEL) \
 	  -c $(CTX) \
+	  -ub $(UBATCH) \
+	  -b $(BATCH) \
 	  --host $(HOST) \
 	  --port $(PORT) \
-	  --chat-template $(CHAT_TPL) \
-	  -ngl $(GPU_LAYERS)
+	  $(PROMPT_ARGS) \
+	  -ngl $(GPU_LAYERS) \
+	  $(SERVER_ARGS)
 
 chat:
 	llama-cli \
@@ -49,5 +61,6 @@ chat:
 	  -c $(CTX) \
 	  --temp $(TEMP) \
 	  --top-p $(TOP_P) \
-	  --chat-template $(CHAT_TPL) \
-	  -ngl $(GPU_LAYERS)
+	  $(PROMPT_ARGS) \
+	  -ngl $(GPU_LAYERS) \
+	  $(CHAT_ARGS)
