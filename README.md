@@ -43,11 +43,16 @@ make chat  ENV=.env-gpt-oss-120b.MXFP4 RPC=10.0.0.12:50052,10.0.0.13:50052
 
 ## Docker Compose
 
-The `compose.yaml` provides a containerized path. To check status without errors:
+The `compose.yaml` provides a containerized path. To check status:
 ```bash
 docker compose ps
 ```
-See [GEMINI.md](./GEMINI.md) for detailed Docker usage instructions.
+
+To run a specific model profile:
+```bash
+ENV_FILE=.env-Qwen3.5-27B.Q4_K_M docker compose up
+```
+See [GEMINI.md](./GEMINI.md) for detailed Docker usage instructions and volume mapping notes.
 
 ## Primary Environments
 
