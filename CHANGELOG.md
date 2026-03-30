@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `CHAT_EXTRA_ARGS` as an escape hatch for `llama-cli` flags
 - Updated `GEMINI.md`, `AGENTS.md`, `profiles/README.md`, and `OPENCODE.md` with the latest configuration variables and integration guidance
 - Fixed the `OPENCODE.md` integration guide to use the correct `provider` record and `options` schema required by OpenCode
+- Added Smart Model Resolution to the `Makefile`: Koda now automatically finds models in the Hugging Face cache if not found in `MODEL_DIR`
+- Reorganized documentation: moved `PROFILES.md` to `profiles/README.md` for better directory-level discoverability
+- Added `make list` and `make select` (requires `fzf` or `gum`) for interactive model selection
+- Added `make export-opencode` and `make export-vscode` to generate configuration snippets
+- Added healthcheck and `API_KEY` support to `compose.yaml`
 - Fixed a corrupted `Makefile` that was causing syntax errors during `make serve`
 - Added GitHub Action workflow for Trivy security scanning of the repository
 - Rewrote `README.md` for better human readability, including a new "Built On" section

@@ -55,6 +55,13 @@ Integrating with external tools (OpenCode, VS Code, etc.) requires matching the 
 - **The Solution:** Use the `ALIAS` variable in `.env-<model>.<quant>` files to set a clean, consistent ID (e.g., `qwen3.5-27b`).
 - **Grouping:** Group different quantizations (Q4, Q8, etc.) under the same `ALIAS` so that client configurations don't need to change when you swap quants.
 
+## Smart Model Resolution
+
+The `Makefile` dynamically resolves the `MODEL` path:
+- **Local:** Checks `$(MODEL_DIR)/$(MODEL_FILE)` first (handles `~` expansion).
+- **Cache:** Falls back to the Hugging Face cache via `hf download` if the local file is missing.
+- **Verification:** Always use `make check-model ENV=...` to verify path resolution before execution.
+
 ## Running the Model
 
 Use `make` targets — do not invoke `llama-cli` or `llama-server` directly:

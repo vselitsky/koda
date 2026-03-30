@@ -29,7 +29,10 @@ make check
 ```
 
 ### 3. Download & Serve
-Pick a model profile (see [profiles/README.md](./profiles/README.md)) and start the server. Profiles are located in the `profiles/` directory, but the `Makefile` handles the path for you:
+Pick a model profile (see [profiles/README.md](./profiles/README.md)) and start the server. 
+
+**Smart Path Resolution:** Koda automatically looks for models in your `MODEL_DIR` first, and falls back to the default **Hugging Face cache** if not found. You don't need to move files manually!
+
 ```bash
 make download ENV=profiles/.env-Qwen3.5-27B.Q4_K_M
 make serve    ENV=profiles/.env-Qwen3.5-27B.Q4_K_M

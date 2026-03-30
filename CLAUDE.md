@@ -11,56 +11,47 @@ There is also a containerized deployment path via `compose.yaml`, built around t
 ## Commands
 
 ```bash
-make serve    ENV=profiles/.env-<model>.<quant>   # Start built-in WebUI + OpenAI-compatible API server
-make chat     ENV=profiles/.env-<model>.<quant>   # Interactive terminal chat session
-make download ENV=profiles/.env-<model>.<quant>   # Download model from HuggingFace
+make serve    ENV=.env-<model>.<quant>   # Start built-in WebUI + OpenAI-compatible API server
+make chat     ENV=.env-<model>.<quant>   # Interactive terminal chat session
+make download ENV=.env-<model>.<quant>   # Download model from HuggingFace
+make list                                 # List all available model profiles
+make select                               # Interactively select a profile (fzf/gum)
 make check                                # Verify required binaries are on PATH
-make help                                 # List available targets
 ```
+*Note: Koda automatically prepends `profiles/` to the `ENV` path if not provided.*
 
-Runtime variables from `.env` can be overridden inline alongside `ENV`.
-
-**External dependencies (installed via Homebrew):** `llama-server`, `llama-cli`, `hf`
+**External dependencies:** `llama-server`, `llama-cli`, `hf` (huggingface-cli), `fzf` (optional)
 
 ## Architecture
 
 Three-layer configuration system:
 
-1. **`.env`** — Global defaults applied to all commands (`CTX=0`, `HOST=0.0.0.0`, `PORT=8080`, `GPU_LAYERS=-1`, `PROMPT_FORMAT=jinja`, `CHAT_TPL=chatml`, `BATCH=512`, `UBATCH=512`, `METRICS=0`, `TEMP=0.6`, `TOP_P=0.95`)
-2. **`.env-<model>.<quant>`** — Model-specific profile defining `HF_REPO`, `MODEL_DIR`, `MODEL_FILE`, and optionally `DOWNLOAD_INCLUDE`
-3. **Inline overrides** — Command-line variable assignments override both layers
+1. **`.env`** — Global defaults (`CTX=0`, `HOST=0.0.0.0`, `PORT=8080`, `GPU_LAYERS=-1`, etc.)
+2. **`profiles/.env-<model>.<quant>`** — Model-specific profiles defining `HF_REPO`, `MODEL_DIR`, `MODEL_FILE`, and `ALIAS`.
+3. **Inline overrides** — Command-line variable assignments override both layers.
 
 Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
 
-The Makefile validates that `HF_REPO`, `MODEL_DIR`, and `MODEL_FILE` are set for `serve`, `chat`, and `download`; `check` only verifies local dependencies.
-
-## Bundled Model Profiles
-
-Profiles follow the naming convention `.env-<ModelName>.<Quantization>`. Currently bundled: Qwen3.5 variants at 9B, 27B, and 35B-A3B sizes, plus `gpt-oss-20b`, `gpt-oss-120b`, `DeepSeek-R1-Distill-Qwen-32B`, and `Kimi-K2.5`. Sharded GGUF models use `DOWNLOAD_INCLUDE` to fetch all required parts.
-
 ## Key Behaviors
 
-- **Reasoning models**: Output appears in `<think>...</think>` blocks before the final answer
-- **Context window**: `CTX=0` uses the model's native window; set explicitly to constrain RAM/VRAM
-- **GPU offload**: `GPU_LAYERS=-1` asks `llama.cpp` to offload as many layers as possible; set `0` to run on CPU only
-- **Prompt format**: Koda prefers the GGUF model's embedded Jinja template by default; set `PROMPT_FORMAT=template` to force `CHAT_TPL`
-- **RPC offload**: Set `RPC=<host:port>` to pass `--rpc` through to `llama-server` or `llama-cli`
-- **Metrics**: Set `METRICS=1` to expose `llama-server` metrics
-- **Batching**: `BATCH=512` and `UBATCH=512` are conservative server defaults that can be tuned per machine
-- **Advanced flags**: Use `SERVER_EXTRA_ARGS` or `CHAT_EXTRA_ARGS` instead of editing the Makefile when you need extra llama.cpp options
+- **Smart Model Resolution**: The Makefile looks for models in `MODEL_DIR` first, then falls back to the default Hugging Face cache using `hf download`.
+- **Model Identity (ALIAS)**: Always use `ALIAS` in profiles to ensure consistent IDs for external tools (OpenCode, VS Code).
+- **Reasoning models**: Output appears in `<think>...</think>` blocks.
+- **Context window**: `CTX=0` uses the model's native window.
+- **GPU offload**: `GPU_LAYERS=-1` offloads maximum layers to GPU.
+- **Prompt format**: Prefers embedded Jinja templates; set `PROMPT_FORMAT=template` to force `CHAT_TPL`.
+- **Docker Compose**: Uses a healthcheck to ensure the model is loaded before reporting "healthy".
 
 ## Documentation Files
 
 | File | Purpose |
 |------|---------|
-| `README.md` | Primary user guide, quick start, commands, runtime variables reference |
-| `profiles/README.md` | Bundled model catalog, source links, and profile-specific caveats |
-| `AGENTS.md` | Technical reference for agents/automation |
-| `GGUF.md` | Explainer: what GGUF is and why to run locally |
-| `compose.yaml` | Docker Compose deployment with Traefik labels on the external `traefik` network |
-| `scripts/compose-entrypoint.sh` | Compose runtime wrapper that maps Koda env vars to `llama-server` flags |
-| `TAILSCALE.md` | Tailscale guide for private access and multi-machine RPC pooling via llama.cpp |
-| `OPENCODE.md` | Integration with OpenCode IDE |
-| `VSCODE.md` | Integration with VS Code (Copilot Chat BYOM, Continue, Roo Cline) |
-| `GEMINI.md` | Agent context and instructions for Gemini CLI |
-| `CHANGELOG.md` | Version history (Keep a Changelog format) |
+| `README.md` | Primary user guide, Quick Start, and TOC. |
+| `profiles/README.md` | Bundled model catalog and profile-specific notes. |
+| `AGENTS.md` | Technical reference for developers and AI agents. |
+| `GEMINI.md` | Detailed Docker usage and agent-specific instructions. |
+| `OPENCODE.md` | Verified configuration guide for OpenCode. |
+| `VSCODE.md` | Integration guide for VS Code extensions. |
+| `TAILSCALE.md` | Guide for private access and multi-machine RPC pooling. |
+| `GGUF.md` | Explainer: what GGUF is and why to run locally. |
+| `CHANGELOG.md` | Version history (Keep a Changelog format). |

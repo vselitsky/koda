@@ -35,6 +35,14 @@ You can override the container name or the image (e.g., for ROCm) via environmen
 - `CONTAINER_NAME=koda-custom`: Rename the container.
 - `LLAMA_CPP_IMAGE=ghcr.io/ggml-org/llama.cpp:server-rocm`: Use the AMD/ROCm image.
 
+## Smart Model Resolution
+
+The `Makefile` includes logic to automatically resolve model paths:
+1.  **Local Check:** It first looks in `${MODEL_DIR}/${MODEL_FILE}` (with tilde expansion).
+2.  **Cache Fallback:** If not found locally, it uses `hf download` to locate the model in the default Hugging Face cache.
+
+This ensures `make serve` and `make chat` work seamlessly regardless of whether the model was downloaded to a specific folder or the default cache.
+
 ## Key Commands
 
 `make download`, `make serve`, and `make chat` require an `ENV` variable pointing to a model's profile in `profiles/`.
