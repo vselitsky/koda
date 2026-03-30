@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed the `OPENCODE.md` integration guide to use the correct `provider` record and `options` schema required by OpenCode
 - Fixed a corrupted `Makefile` that was causing syntax errors during `make serve`
 - Added GitHub Action workflow for Trivy security scanning of the repository
+- Rewrote `README.md` for better human readability, including a new "Built On" section
+- Added curation credit to DimkaNYC across the documentation
 - `Makefile` with `serve`, `chat`, and `download` targets; `make` alone shows usage
 - Env files named `.env-<model>.<quant>` — no default, always explicit
 - Required variables (`HF_REPO`, `MODEL_DIR`, `MODEL_FILE`) must be set via env file — no hardcoded defaults
@@ -28,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `compose.yaml` as a containerized deployment path using the official upstream `llama.cpp` image
 - Added Traefik labels for the Compose deployment path
 - Simplified the Compose deployment path to rely on `.env`, `expose`, and the external `traefik` network
-
 - Added Hugging Face cache volume to `compose.yaml` to share models from the default cache location
 - Added default `MODEL_DIR` and `MODEL_FILE` to `.env` to fix Docker Compose interpolation errors
 
