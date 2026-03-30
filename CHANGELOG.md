@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated `GEMINI.md`, `AGENTS.md`, `PROFILES.md`, and `OPENCODE.md` with the latest configuration variables and integration guidance
 - Fixed the `OPENCODE.md` integration guide to use the correct `provider` record and `options` schema required by OpenCode
 - Fixed a corrupted `Makefile` that was causing syntax errors during `make serve`
+- Added GitHub Action workflow for Trivy security scanning of the repository
 - `Makefile` with `serve`, `chat`, and `download` targets; `make` alone shows usage
 - Env files named `.env-<model>.<quant>` — no default, always explicit
 - Required variables (`HF_REPO`, `MODEL_DIR`, `MODEL_FILE`) must be set via env file — no hardcoded defaults

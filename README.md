@@ -63,16 +63,11 @@ Koda is mainly built for:
 - Linux with NVIDIA GPU (via CUDA)
 - Linux with AMD GPU (via ROCm/OpenCL)
 
-## Ecosystem & Alternatives
+## Security
 
-Koda is a thin wrapper designed for a `Makefile` and `docker compose` workflow. If you are looking for a more "app-like" experience or different integration patterns, the [llama.cpp](https://github.com/ggml-org/llama.cpp) ecosystem is vast:
+Koda prioritizes local-first inference for privacy. To maintain the integrity of the project, we use:
 
-- **[Ollama](https://ollama.com/)** — the most popular CLI and local daemon for running GGUF models with a simple `run` command.
-- **[Jan.ai](https://jan.ai/)** — an open-source, local-first desktop chat application (cross-platform).
-- **[LM Studio](https://lmstudio.ai/)** — a polished desktop GUI for discovering and running GGUF models (proprietary).
-- **[KoboldCPP](https://github.com/LostRuins/koboldcpp)** — a feature-rich GGUF server often used for creative writing and roleplay.
-- **[LocalAI](https://localai.io/)** — a multi-backend containerized API server that supports GGUF, Whisper, and more.
-- **[GPT4All](https://gpt4all.io/)** — an easy-to-use desktop chat client with a focus on privacy and local documents.
+- **[Trivy](https://github.com/aquasecurity/trivy)** — Automated vulnerability and misconfiguration scanning via GitHub Actions on every push and weekly schedule.
 
 ## Docs
 
