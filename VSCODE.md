@@ -10,7 +10,7 @@ GitHub Copilot Chat supports local LLMs through the **["Bring Your Own Model" (B
 
 To add your local server to Copilot Chat:
 
-1. **Start your local server:** Ensure you have a model running (e.g., `make serve ENV=.env-Qwen3.5-27B.Q4_K_M`).
+1. **Start your local server:** Ensure you have a model running (e.g., `make serve ENV=profiles/.env-Qwen3.5-27B.Q4_K_M`).
    This exposes both the built-in WebUI at `http://localhost:8080` and the OpenAI-compatible API at `http://localhost:8080/v1`.
 2. **Configure VS Code Settings:**
    - Open **Settings** (`Cmd+,` or `Ctrl+,`).

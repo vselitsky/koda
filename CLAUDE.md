@@ -11,9 +11,9 @@ There is also a containerized deployment path via `compose.yaml`, built around t
 ## Commands
 
 ```bash
-make serve    ENV=.env-<model>.<quant>   # Start built-in WebUI + OpenAI-compatible API server
-make chat     ENV=.env-<model>.<quant>   # Interactive terminal chat session
-make download ENV=.env-<model>.<quant>   # Download model from HuggingFace
+make serve    ENV=profiles/.env-<model>.<quant>   # Start built-in WebUI + OpenAI-compatible API server
+make chat     ENV=profiles/.env-<model>.<quant>   # Interactive terminal chat session
+make download ENV=profiles/.env-<model>.<quant>   # Download model from HuggingFace
 make check                                # Verify required binaries are on PATH
 make help                                 # List available targets
 ```

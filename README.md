@@ -31,8 +31,8 @@ make check
 ### 3. Download & Serve
 Pick a model profile (see [PROFILES.md](./PROFILES.md)) and start the server. Profiles are located in the `profiles/` directory, but the `Makefile` handles the path for you:
 ```bash
-make download ENV=.env-Qwen3.5-27B.Q4_K_M
-make serve    ENV=.env-Qwen3.5-27B.Q4_K_M
+make download ENV=profiles/.env-Qwen3.5-27B.Q4_K_M
+make serve    ENV=profiles/.env-Qwen3.5-27B.Q4_K_M
 ```
 *Your server is now live at `http://localhost:8080` with an OpenAI-compatible API at `/v1`.*
 
@@ -57,13 +57,13 @@ Koda is built around a simple `make` workflow. Every command requires an `ENV` f
 You can tune the performance directly from the command line:
 ```bash
 # Change the port or restrict the context window
-make serve ENV=.env-Qwen3.5-27B.Q4_K_M PORT=9090 CTX=8192
+make serve ENV=profiles/.env-Qwen3.5-27B.Q4_K_M PORT=9090 CTX=8192
 
 # Enable metrics and set an API key
-make serve ENV=.env-Qwen3.5-27B.Q4_K_M METRICS=1 API_KEY=my-secret
+make serve ENV=profiles/.env-Qwen3.5-27B.Q4_K_M METRICS=1 API_KEY=my-secret
 
 # Enable advanced features like speculative decoding or multimodal support
-make serve ENV=.env-Qwen3.5-27B.Q4_K_M DRAFT_MODEL=./draft.gguf
+make serve ENV=profiles/.env-Qwen3.5-27B.Q4_K_M DRAFT_MODEL=./draft.gguf
 ```
 
 ---

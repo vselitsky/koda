@@ -37,8 +37,8 @@ Koda profiles use the `ALIAS` variable to ensure a consistent model ID is report
 The bundled `gpt-oss-20b` profile uses the official GGUF published for `llama.cpp`:
 
 ```bash
-make download ENV=.env-gpt-oss-20b.MXFP4
-make serve ENV=.env-gpt-oss-20b.MXFP4
+make download ENV=profiles/.env-gpt-oss-20b.MXFP4
+make serve ENV=profiles/.env-gpt-oss-20b.MXFP4
 ```
 
 This model expects harmony-style prompting. Koda's default `PROMPT_FORMAT=jinja` is the correct path for the GGUF build.
@@ -52,8 +52,8 @@ Sources:
 The bundled `gpt-oss-120b` profile uses the official sharded GGUF published for `llama.cpp`:
 
 ```bash
-make download ENV=.env-gpt-oss-120b.MXFP4
-make serve ENV=.env-gpt-oss-120b.MXFP4
+make download ENV=profiles/.env-gpt-oss-120b.MXFP4
+make serve ENV=profiles/.env-gpt-oss-120b.MXFP4
 ```
 
 This profile downloads all three GGUF shards via `DOWNLOAD_INCLUDE=gpt-oss-120b-mxfp4-*.gguf`, then serves from the first shard file.
@@ -71,8 +71,8 @@ Sources:
 The original [deepseek-ai/DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1) is a 671B MoE model with 37B activated parameters, so the bundled Koda profile targets the official `llama.cpp`-ready distilled checkpoint instead:
 
 ```bash
-make download ENV=.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0
-make serve ENV=.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0
+make download ENV=profiles/.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0
+make serve ENV=profiles/.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0
 ```
 
 This bundled profile uses [ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF](https://huggingface.co/ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF), converted from the official [deepseek-ai/DeepSeek-R1-Distill-Qwen-32B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B).
@@ -87,8 +87,8 @@ Source:
 The original [moonshotai/Kimi-K2.5](https://huggingface.co/moonshotai/Kimi-K2.5) is a 1T-parameter multimodal MoE model with 32B activated parameters. The bundled Koda profile targets the current practical `llama.cpp` GGUF route:
 
 ```bash
-make download ENV=.env-Kimi-K2.5.Q4_X
-make serve ENV=.env-Kimi-K2.5.Q4_X
+make download ENV=profiles/.env-Kimi-K2.5.Q4_X
+make serve ENV=profiles/.env-Kimi-K2.5.Q4_X
 ```
 
 This profile uses [AesSedai/Kimi-K2.5-GGUF](https://huggingface.co/AesSedai/Kimi-K2.5-GGUF), specifically the `Q4_X` shard set:

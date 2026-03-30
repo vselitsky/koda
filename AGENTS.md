@@ -68,7 +68,7 @@ Use `make` targets — do not invoke `llama-cli` or `llama-server` directly:
 | `make select` | Interactively select a profile (requires `fzf` or `gum`) |
 | `make check` | Verify required binaries are installed and on `PATH` |
 
-`make serve`, `make chat`, and `make download` require an env file: `make serve ENV=.env-Qwen3.5-27B.Q4_K_M` (Koda prepends `profiles/` for you).
+`make serve`, `make chat`, and `make download` require an env file: `make serve ENV=profiles/.env-Qwen3.5-27B.Q4_K_M` (Koda prepends `profiles/` for you).
 
 ## No Build Steps
 
