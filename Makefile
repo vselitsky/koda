@@ -24,7 +24,13 @@ endif
 
 # Tilde expansion for paths
 EXP_MODEL_DIR := $(shell echo "$(MODEL_DIR)" | sed "s|^~|$$HOME|")
-MODEL := $(EXP_MODEL_DIR)/$(MODEL_FILE)
+# Check if model exists locally, otherwise try to find it in HF cache
+MODEL := $(shell \
+	if [ -f "$(EXP_MODEL_DIR)/$(MODEL_FILE)" ]; then \
+		echo "$(EXP_MODEL_DIR)/$(MODEL_FILE)"; \
+	else \
+		hf download $(HF_REPO) $(MODEL_FILE) 2>/dev/null | tail -n 1; \
+	fi)
 DOWNLOAD_INCLUDE ?= $(MODEL_FILE)
 
 .PHONY: help check download serve chat list select export-opencode export-vscode
@@ -54,9 +60,10 @@ API_KEY_ARGS := --api-key $(API_KEY)
 endif
 
 # Advanced Performance & Multimodal detection
-# We use the expanded model directory for wildcard checks
-ifneq ($(wildcard $(EXP_MODEL_DIR)/mmproj*),)
-MMPROJ_FILE := $(firstword $(wildcard $(EXP_MODEL_DIR)/mmproj*))
+# We use the parent directory of the resolved model for MM checks
+RESOLVED_MODEL_DIR := $(shell dirname "$(MODEL)")
+ifneq ($(wildcard $(RESOLVED_MODEL_DIR)/mmproj*),)
+MMPROJ_FILE := $(firstword $(wildcard $(RESOLVED_MODEL_DIR)/mmproj*))
 MMPROJ_ARGS := --mmproj $(MMPROJ_FILE)
 endif
 
@@ -149,7 +156,7 @@ select:
 
 check-model:
 	@if [ ! -f "$(MODEL)" ]; then \
-	  echo "Error: Model file not found at $(MODEL)"; \
+	  echo "Error: Model file not found."; \
 	  echo "Run 'make download ENV=$(ENV)' first."; \
 	  exit 1; \
 	fi
