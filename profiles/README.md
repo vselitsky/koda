@@ -27,7 +27,7 @@ Sizes marked `~` are estimates from standard bit-rate formulas; all others are e
 
 ---
 
-### Gemma 4 E2B Instruct
+### Gemma 4 · Google
 
 Google's Gemma 4 5B instruction model. Smallest footprint in the catalog — a good first model to try. Official GGUF from ggml-org.
 
@@ -41,9 +41,11 @@ Google's Gemma 4 5B instruction model. Smallest footprint in the catalog — a g
 
 ---
 
-### Qwen3.5-9B · HauhauCS Uncensored
+### Qwen3.5 · Alibaba / HauhauCS
 
-Compact 9B model. Includes a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use when the mmproj file is in the same directory.
+Alibaba's Qwen3.5 family in two sizes. Both are converted to GGUF by HauhauCS and include a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use when the mmproj file is in the same directory. The official Qwen weights are safetensors only; these profiles use the HauhauCS GGUF conversions.
+
+#### Qwen3.5-9B
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -53,24 +55,7 @@ Compact 9B model. Includes a vision encoder (`mmproj`) — Koda auto-detects it 
 **ALIAS:** `qwen3.5-9b`
 **Source:** [HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive)
 
----
-
-### GPT-OSS 20B
-
-OpenAI's open-source 20B model. Official GGUF from ggml-org. Uses harmony-style prompting; Koda's default `PROMPT_FORMAT=jinja` handles it automatically.
-
-| Profile | Size | Format |
-| --- | --- | --- |
-| `.env-gpt-oss-20b.MXFP4` | 12.1 GB | MXFP4 |
-
-**ALIAS:** `gpt-oss-20b`
-**Sources:** [ggml-org/gpt-oss-20b-GGUF](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) · [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b)
-
----
-
-### Qwen3.5-35B-A3B · HauhauCS Uncensored
-
-35B MoE model (3B activated parameters per token). Includes a vision encoder (`mmproj`) for multimodal use. The official weights at [Qwen/Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) are safetensors only; these profiles use the HauhauCS GGUF conversion.
+#### Qwen3.5-35B-A3B (MoE, 3B activated)
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -80,9 +65,39 @@ OpenAI's open-source 20B model. Official GGUF from ggml-org. Uses harmony-style 
 **ALIAS:** `qwen3.5-35b-a3b`
 **Source:** [HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive)
 
+#### Qwen3.5-27B · Claude 4.6 Opus Reasoning Distilled
+
+> ⚠️ **No bundled profile.** The source repo ([Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled)) publishes safetensors only. Community GGUF conversions are linked from the model card. Once you have a GGUF source, create a profile following the pattern of the other `.env-*` files.
+
 ---
 
-### DeepSeek-R1-Distill-Qwen-32B
+### GPT-OSS · OpenAI
+
+OpenAI's open-source model family, official GGUFs from ggml-org. Both use harmony-style prompting; Koda's default `PROMPT_FORMAT=jinja` handles it automatically.
+
+#### GPT-OSS 20B
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gpt-oss-20b.MXFP4` | 12.1 GB | MXFP4 |
+
+**ALIAS:** `gpt-oss-20b`
+**Sources:** [ggml-org/gpt-oss-20b-GGUF](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) · [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b)
+
+#### GPT-OSS 120B
+
+Sharded across 3 GGUF files. Requires roughly 80 GB of VRAM/RAM for full GPU acceleration.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gpt-oss-120b.MXFP4` | 63.4 GB (3 shards) | MXFP4 |
+
+**ALIAS:** `gpt-oss-120b`
+**Sources:** [ggml-org/gpt-oss-120b-GGUF](https://huggingface.co/ggml-org/gpt-oss-120b-GGUF) · [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b)
+
+---
+
+### DeepSeek-R1-Distill-Qwen-32B · DeepSeek
 
 The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distilled checkpoint is the recommended local stand-in. Outputs reasoning in `<think>...</think>` blocks before the final answer. Avoid system prompts; let the model open with `<think>` naturally.
 
@@ -96,20 +111,7 @@ The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distill
 
 ---
 
-### GPT-OSS 120B
-
-OpenAI's open-source 120B model. Sharded across 3 GGUF files. Requires roughly 80 GB of VRAM/RAM for full GPU acceleration. Uses harmony-style prompting.
-
-| Profile | Size | Format |
-| --- | --- | --- |
-| `.env-gpt-oss-120b.MXFP4` | 63.4 GB (3 shards) | MXFP4 |
-
-**ALIAS:** `gpt-oss-120b`
-**Sources:** [ggml-org/gpt-oss-120b-GGUF](https://huggingface.co/ggml-org/gpt-oss-120b-GGUF) · [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b)
-
----
-
-### Nemotron-3-Super-120B
+### Nemotron-3-Super-120B · NVIDIA
 
 NVIDIA's 121B Nemotron H MoE model. Single-file GGUF from ggml-org. Requires substantial VRAM; pairs well with llama.cpp RPC for multi-machine offload.
 
@@ -122,9 +124,9 @@ NVIDIA's 121B Nemotron H MoE model. Single-file GGUF from ggml-org. Requires sub
 
 ---
 
-### Kimi-K2.5
+### Kimi-K2.5 · Moonshot AI
 
-Moonshot AI's 1T-parameter MoE (32B activated). Extremely large — 544 GiB across 14 shards. Advanced profile; treat as multi-machine or server-class hardware only.
+1T-parameter MoE (32B activated). Extremely large — 544 GiB across 14 shards. Advanced profile; treat as multi-machine or server-class hardware only.
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -133,12 +135,6 @@ Moonshot AI's 1T-parameter MoE (32B activated). Extremely large — 544 GiB acro
 **ALIAS:** `kimi-k2.5`
 **Sampling:** `TEMP=1.0` (matches Moonshot AI's published evaluation setting)
 **Sources:** [AesSedai/Kimi-K2.5-GGUF](https://huggingface.co/AesSedai/Kimi-K2.5-GGUF) · [moonshotai/Kimi-K2.5](https://huggingface.co/moonshotai/Kimi-K2.5)
-
----
-
-### Qwen3.5-27B · Claude 4.6 Opus Reasoning Distilled
-
-> ⚠️ **No bundled profile.** The source repo ([Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled)) publishes safetensors only. Community GGUF conversions are linked from the model card. Once you have a GGUF source, create a profile following the pattern of the other `.env-*` files.
 
 ---
 
