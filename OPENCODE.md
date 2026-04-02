@@ -32,7 +32,8 @@ This guide explains how to use OpenCode with the local inference server provided
            "kimi-k2.5": { "name": "Kimi K2.5 (Local)" },
            "gpt-oss-20b": { "name": "GPT-OSS 20B (Local)" },
            "gpt-oss-120b": { "name": "GPT-OSS 120B (Local)" },
-           "gemma-4-e2b-it": { "name": "Gemma 4 E2B Instruct (Local)" }
+           "gemma-4-e2b-it": { "name": "Gemma 4 E2B Instruct (Local)" },
+           "nemotron-3-super-120b": { "name": "Nemotron 3 Super 120B (Local)" }
          }
        }
      }

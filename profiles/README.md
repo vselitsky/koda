@@ -1,131 +1,162 @@
 # Bundled Profiles
 
-This file is the catalog of bundled Koda model profiles. Each profile maps to a `.env-*` file in the `profiles/` directory that works with `make download`, `make serve`, and `make chat`.
+Each profile is a `.env-*` file in `profiles/` that configures `make download`, `make serve`, and `make chat` for a specific model and quantization.
 
-## At a Glance
+---
 
-| File | Model | ALIAS | Size | Notes |
-| --- | --- | --- | --- | --- |
-| `.env-Qwen3.5-27B.Q4_K_M` | [Qwen3.5-27B Claude 4.6 Opus Reasoning Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled) | `qwen3.5-27b` | ~15 GB | Smaller local reasoning profile |
-| `.env-Qwen3.5-27B.Q8_0` | [Qwen3.5-27B Claude 4.6 Opus Reasoning Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled) | `qwen3.5-27b` | ~29 GB | Higher-memory variant |
-| `.env-Qwen3.5-35B-A3B.Q4_K_M` | [Qwen3.5-35B-A3B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive) | `qwen3.5-35b-a3b` | ~20 GB | HauhauCS variant |
-| `.env-Qwen3.5-35B-A3B.Q8_0` | [Qwen3.5-35B-A3B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive) | `qwen3.5-35b-a3b` | ~37 GB | Higher-memory variant |
-| `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` | [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) | `qwen3.5-35b-a3b` | ~20 GB | Official Qwen variant |
-| `.env-Qwen3.5-35B-A3B-Qwen.Q8_0` | [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) | `qwen3.5-35b-a3b` | ~37 GB | Higher-memory variant |
-| `.env-Qwen3.5-9B.Q4_K_M` | [Qwen3.5-9B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive) | `qwen3.5-9b` | ~5.1 GB | Smallest bundled Qwen profile |
-| `.env-Qwen3.5-9B.Q8_0` | [Qwen3.5-9B Uncensored](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive) | `qwen3.5-9b` | ~9.6 GB | Higher-memory variant |
-| `.env-gpt-oss-20b.MXFP4` | [gpt-oss-20b GGUF](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) | `gpt-oss-20b` | 12.1 GB | Official `llama.cpp` GGUF |
-| `.env-gpt-oss-120b.MXFP4` | [gpt-oss-120b GGUF](https://huggingface.co/ggml-org/gpt-oss-120b-GGUF) | `gpt-oss-120b` | 63.4 GB | Official sharded `llama.cpp` GGUF (3 shards) |
-| `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` | [DeepSeek-R1-Distill-Qwen-32B GGUF](https://huggingface.co/ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF) | `deepseek-r1-distill-qwen-32b` | 34.8 GB | Practical local stand-in for DeepSeek-R1 |
-| `.env-Kimi-K2.5.Q4_X` | [Kimi-K2.5 GGUF (Q4_X)](https://huggingface.co/AesSedai/Kimi-K2.5-GGUF) | `kimi-k2.5` | 544 GiB | Very large sharded GGUF (14 shards) |
-| `.env-gemma-4-E2B-it.Q8_0` | [Gemma 4 E2B Instruct GGUF](https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF) | `gemma-4-e2b-it` | 4.97 GB | Official ggml-org GGUF |
-| `.env-gemma-4-E2B-it.F16` | [Gemma 4 E2B Instruct GGUF](https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF) | `gemma-4-e2b-it` | 9.31 GB | Full precision |
+## Quantization Guide
 
-*Sizes marked `~` are estimates based on standard quantization bit-rates (Q4_K_M ≈ 4.5 b/param, Q8_0 ≈ 8.5 b/param). All others are exact file sizes from the HuggingFace repo. VRAM/RAM needed ≈ file size + ~1–2 GB overhead for context.*
+GGUF models are quantized — their weights are compressed to reduce memory use with minimal quality loss. The format appears at the end of each profile filename.
 
-## API Identity (Aliases)
+| Format | Bits/weight | Relative size | Notes |
+| --- | --- | --- | --- |
+| **F16** | 16 | 100% | Full float16, no compression. Best quality ceiling. |
+| **BF16** | 16 | 100% | Brain float16. Same size as F16, wider exponent range. |
+| **Q8_0** | ~8.5 | ~53% | Near-lossless. Perceptually indistinguishable from F16 for most tasks. |
+| **Q4_K_M** | ~4.5 | ~28% | 4-bit K-quant, "medium" mix — critical layers kept at higher precision. Best size/quality tradeoff; recommended default. |
+| **Q4_K** | ~4.5 | ~27% | 4-bit K-quant, base variant. Slightly smaller than Q4_K_M with marginally lower quality. |
+| **MXFP4** | 4 | ~25% | Microsoft Microscaling FP4. Hardware-native block-scaled 4-bit. Used by OpenAI GPT-OSS models. |
+| **Q4_X** | ~4.5 | ~28% | Extended 4-bit designed for large MoE weight structures. |
 
-Koda profiles use the `ALIAS` variable to ensure a consistent model ID is reported via the OpenAI-compatible API, regardless of the underlying GGUF filename. This allows external tools like OpenCode or VS Code to maintain a stable configuration even if you switch between different quantizations (e.g., from Q4 to Q8) of the same model family.
+**VRAM/RAM rule of thumb:** file size + ~1–2 GB overhead for the KV cache at default context.
+Sizes marked `~` are estimates from standard bit-rate formulas; all others are exact.
 
-## Recommended Starting Points
+---
 
-- Start with `.env-Qwen3.5-27B.Q4_K_M` if you want a reasonable first local reasoning model.
-- Use `.env-gpt-oss-20b.MXFP4` if you want a current `gpt-oss` profile with official `llama.cpp` GGUF support.
-- Use `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` instead of trying to run the full `DeepSeek-R1` release locally.
-- Treat `.env-Kimi-K2.5.Q4_X` as an advanced profile due to its size.
+## Model Catalog
 
-## Profile Notes
+---
 
-### gpt-oss-20b
+### Gemma 4 E2B Instruct
 
-The bundled `gpt-oss-20b` profile uses the official GGUF published for `llama.cpp`:
+Google's Gemma 4 5B instruction model. Smallest footprint in the catalog — a good first model to try. Official GGUF from ggml-org.
 
-```bash
-make download ENV=profiles/.env-gpt-oss-20b.MXFP4
-make serve ENV=profiles/.env-gpt-oss-20b.MXFP4
-```
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gemma-4-E2B-it.Q8_0` | 4.97 GB | Q8_0 |
+| `.env-gemma-4-E2B-it.F16` | 9.31 GB | F16 |
 
-This model expects harmony-style prompting. Koda's default `PROMPT_FORMAT=jinja` is the correct path for the GGUF build.
+**ALIAS:** `gemma-4-e2b-it`
+**Sources:** [ggml-org/gemma-4-E2B-it-GGUF](https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF) · [google/gemma-4-E2B-it](https://huggingface.co/google/gemma-4-E2B-it)
 
-Sources:
-- [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b)
-- [ggml-org/gpt-oss-20b-GGUF](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF)
+---
 
-### gpt-oss-120b
+### Qwen3.5-9B · HauhauCS Uncensored
 
-The bundled `gpt-oss-120b` profile uses the official sharded GGUF published for `llama.cpp`:
+Compact 9B model. Includes a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use when the mmproj file is in the same directory.
 
-```bash
-make download ENV=profiles/.env-gpt-oss-120b.MXFP4
-make serve ENV=profiles/.env-gpt-oss-120b.MXFP4
-```
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-9B.Q4_K_M` | ~5.1 GB | Q4_K_M |
+| `.env-Qwen3.5-9B.Q8_0` | ~9.6 GB | Q8_0 |
 
-This profile downloads all three GGUF shards via `DOWNLOAD_INCLUDE=gpt-oss-120b-mxfp4-*.gguf`, then serves from the first shard file.
+**ALIAS:** `qwen3.5-9b`
+**Source:** [HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive)
 
-This model also expects harmony-style prompting, so Koda's default `PROMPT_FORMAT=jinja` is the correct path here too.
+---
 
-Hardware note: upstream positions `gpt-oss-120b` for large-memory systems, roughly in the single-80GB-GPU class for full acceleration.
+### GPT-OSS 20B
 
-Sources:
-- [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b)
-- [ggml-org/gpt-oss-120b-GGUF](https://huggingface.co/ggml-org/gpt-oss-120b-GGUF)
+OpenAI's open-source 20B model. Official GGUF from ggml-org. Uses harmony-style prompting; Koda's default `PROMPT_FORMAT=jinja` handles it automatically.
 
-### DeepSeek-R1
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gpt-oss-20b.MXFP4` | 12.1 GB | MXFP4 |
 
-The original [deepseek-ai/DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1) is a 671B MoE model with 37B activated parameters, so the bundled Koda profile targets the official `llama.cpp`-ready distilled checkpoint instead:
+**ALIAS:** `gpt-oss-20b`
+**Sources:** [ggml-org/gpt-oss-20b-GGUF](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) · [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b)
 
-```bash
-make download ENV=profiles/.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0
-make serve ENV=profiles/.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0
-```
+---
 
-This bundled profile uses [ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF](https://huggingface.co/ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF), converted from the official [deepseek-ai/DeepSeek-R1-Distill-Qwen-32B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B).
+### Qwen3.5-35B-A3B · HauhauCS Uncensored
 
-DeepSeek recommends `temperature` in the `0.5-0.7` range, avoiding system prompts, and allowing the model to start with `<think>` reasoning naturally. Koda's defaults already use `TEMP=0.6` and `TOP_P=0.95`.
+35B MoE model (3B activated parameters per token). Includes a vision encoder (`mmproj`) for multimodal use. The official weights at [Qwen/Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) are safetensors only; these profiles use the HauhauCS GGUF conversion.
 
-Source:
-- [DeepSeek-R1 model card](https://huggingface.co/deepseek-ai/DeepSeek-R1)
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-35B-A3B.Q4_K_M` | ~20 GB | Q4_K_M |
+| `.env-Qwen3.5-35B-A3B.Q8_0` | ~37 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-35b-a3b`
+**Source:** [HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive)
+
+---
+
+### DeepSeek-R1-Distill-Qwen-32B
+
+The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distilled checkpoint is the recommended local stand-in. Outputs reasoning in `<think>...</think>` blocks before the final answer. Avoid system prompts; let the model open with `<think>` naturally.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` | 34.8 GB | Q8_0 |
+
+**ALIAS:** `deepseek-r1-distill-qwen-32b`
+**Sampling:** `TEMP=0.6`, `TOP_P=0.95` (Koda defaults match DeepSeek's recommendation)
+**Sources:** [ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF](https://huggingface.co/ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF) · [deepseek-ai/DeepSeek-R1-Distill-Qwen-32B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B)
+
+---
+
+### GPT-OSS 120B
+
+OpenAI's open-source 120B model. Sharded across 3 GGUF files. Requires roughly 80 GB of VRAM/RAM for full GPU acceleration. Uses harmony-style prompting.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gpt-oss-120b.MXFP4` | 63.4 GB (3 shards) | MXFP4 |
+
+**ALIAS:** `gpt-oss-120b`
+**Sources:** [ggml-org/gpt-oss-120b-GGUF](https://huggingface.co/ggml-org/gpt-oss-120b-GGUF) · [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b)
+
+---
+
+### Nemotron-3-Super-120B
+
+NVIDIA's 121B Nemotron H MoE model. Single-file GGUF from ggml-org. Requires substantial VRAM; pairs well with llama.cpp RPC for multi-machine offload.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Nemotron-3-Super-120B.Q4_K` | 69.9 GB | Q4_K |
+
+**ALIAS:** `nemotron-3-super-120b`
+**Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [nvidia/Nemotron-3-Super-120B](https://huggingface.co/nvidia/Nemotron-3-Super-120B)
+
+---
 
 ### Kimi-K2.5
 
-The original [moonshotai/Kimi-K2.5](https://huggingface.co/moonshotai/Kimi-K2.5) is a 1T-parameter multimodal MoE model with 32B activated parameters. The bundled Koda profile targets the current practical `llama.cpp` GGUF route:
+Moonshot AI's 1T-parameter MoE (32B activated). Extremely large — 544 GiB across 14 shards. Advanced profile; treat as multi-machine or server-class hardware only.
 
-```bash
-make download ENV=profiles/.env-Kimi-K2.5.Q4_X
-make serve ENV=profiles/.env-Kimi-K2.5.Q4_X
-```
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Kimi-K2.5.Q4_X` | 544 GiB (14 shards) | Q4_X |
 
-This profile uses [AesSedai/Kimi-K2.5-GGUF](https://huggingface.co/AesSedai/Kimi-K2.5-GGUF), specifically the `Q4_X` shard set:
+**ALIAS:** `kimi-k2.5`
+**Sampling:** `TEMP=1.0` (matches Moonshot AI's published evaluation setting)
+**Sources:** [AesSedai/Kimi-K2.5-GGUF](https://huggingface.co/AesSedai/Kimi-K2.5-GGUF) · [moonshotai/Kimi-K2.5](https://huggingface.co/moonshotai/Kimi-K2.5)
 
-- download pattern: `Q4_X/Kimi-K2.5-Q4_X-*.gguf`
-- serve path: `Q4_X/Kimi-K2.5-Q4_X-00001-of-00014.gguf`
+---
 
-The profile sets `TEMP=1.0` to match Moonshot AI's published evaluation setting and keeps `TOP_P=0.95`.
+### Qwen3.5-27B · Claude 4.6 Opus Reasoning Distilled
 
-Practical caveats:
+> ⚠️ **No bundled profile.** The source repo ([Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled)) publishes safetensors only. Community GGUF conversions are linked from the model card. Once you have a GGUF source, create a profile following the pattern of the other `.env-*` files.
 
-- This quant is extremely large: the Q4_X shard set is roughly 544 GiB according to the GGUF model card.
-- The GGUF route here is text-and-image only; video is not available in upstream `llama.cpp` yet.
-- Koda does not currently expose `mmproj` wiring, so this bundled profile should be treated as text-first unless you extend the wrapper.
+---
 
-Sources:
-- [moonshotai/Kimi-K2.5](https://huggingface.co/moonshotai/Kimi-K2.5)
-- [AesSedai/Kimi-K2.5-GGUF](https://huggingface.co/AesSedai/Kimi-K2.5-GGUF)
+## Recommended Starting Points
 
-### Gemma 4 E2B
+| Goal | Profile |
+| --- | --- |
+| First local model, minimal VRAM | `.env-gemma-4-E2B-it.Q8_0` (5 GB) |
+| Best size/quality balance | `.env-Qwen3.5-9B.Q4_K_M` (~5 GB) or `.env-gpt-oss-20b.MXFP4` (12 GB) |
+| Reasoning tasks | `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
+| Large GPU (64–80 GB) | `.env-gpt-oss-120b.MXFP4` or `.env-Nemotron-3-Super-120B.Q4_K` |
+| Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (544 GiB) |
 
-Google's Gemma 4 5B instruction-tuned model, published as an official GGUF by ggml-org:
+---
 
-```bash
-make download ENV=profiles/.env-gemma-4-E2B-it.Q8_0
-make serve    ENV=profiles/.env-gemma-4-E2B-it.Q8_0
-```
+## API Identity (Aliases)
 
-Start with Q8_0 (4.97 GB) for a balance of quality and memory use. Use F16 (9.31 GB) if you want full precision and your hardware can fit it.
-
-Sources:
-- [google/gemma-4-E2B-it](https://huggingface.co/google/gemma-4-E2B-it)
-- [ggml-org/gemma-4-E2B-it-GGUF](https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF)
+Profiles set `ALIAS` to give the model a clean, stable ID in the OpenAI-compatible API. This lets external tools (OpenCode, VS Code Copilot) keep a fixed config even when you swap quantizations — the alias stays the same across Q4 and Q8 variants of the same model.
 
 ---
 
