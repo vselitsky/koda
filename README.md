@@ -20,18 +20,27 @@ Get up and running on macOS or Linux in just a few commands.
 
 ### 1. Install Dependencies
 
-**macOS / Linux**
+Choose a path:
+
+**Option A — macOS / Linux (native)**
 ```bash
 brew install llama.cpp huggingface-cli fzf
 ```
 
-**Windows**
+**Option B — Windows (native)**
 ```powershell
 winget install ggml-org.llama.cpp
 winget install junegunn.fzf
+winget install Python.Python.3
 pip install huggingface_hub[cli]
 ```
 > `make` is required on Windows. Use [Git Bash](https://gitforwindows.org/), [MSYS2](https://www.msys2.org/), or [WSL](https://learn.microsoft.com/windows/wsl/).
+
+**Option C — Docker (no dependencies except Docker itself)**
+```bash
+docker compose --env-file profiles/.env-Qwen3.5-27B.Q4_K_M up -d
+```
+No `make`, no `brew`, no binaries to install. See [Docker Compose](#-docker-compose) for GPU support details.
 
 ### 2. Verify Environment
 ```bash
@@ -83,15 +92,21 @@ make serve ENV=profiles/.env-Qwen3.5-27B.Q4_K_M DRAFT_MODEL=./draft.gguf
 
 ## 🐳 Docker Compose
 
-For a "set it and forget it" deployment (e.g., on a home server), use the provided `compose.yaml`:
+The Docker path requires only Docker — no `make`, no `brew`, no local binaries. The official `ghcr.io/ggml-org/llama.cpp` image is used.
 
 ```bash
-# Start the default model
-docker compose up -d
-
-# Run a specific profile
+# Start with a specific model profile
 docker compose --env-file profiles/.env-Qwen3.5-27B.Q4_K_M up -d
 ```
+
+### GPU Support in Docker
+
+| Platform | GPU in Docker | Notes |
+| :--- | :--- | :--- |
+| **NVIDIA (Linux)** | ✅ Full | Requires [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). `compose.yaml` passes `--gpus all` automatically. |
+| **AMD (Linux)** | ✅ Full | Set `LLAMA_CPP_IMAGE=ghcr.io/ggml-org/llama.cpp:server-rocm` in `.env`. |
+| **Apple Silicon (macOS)** | ❌ CPU only | Docker on macOS runs in a Linux VM — Metal/GPU is not accessible. Use the native `make` path for GPU acceleration on Apple Silicon. |
+| **Windows** | ❌ CPU only | Same VM limitation as macOS unless using WSL2 with NVIDIA passthrough. |
 
 ---
 
