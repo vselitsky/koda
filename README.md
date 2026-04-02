@@ -19,9 +19,19 @@ Koda is a lightweight configuration and orchestration layer for running GGUF mod
 Get up and running on macOS or Linux in just a few commands.
 
 ### 1. Install Dependencies
+
+**macOS / Linux**
 ```bash
 brew install llama.cpp huggingface-cli fzf
 ```
+
+**Windows**
+```powershell
+winget install ggml-org.llama.cpp
+winget install junegunn.fzf
+pip install huggingface_hub[cli]
+```
+> `make` is required on Windows. Use [Git Bash](https://gitforwindows.org/), [MSYS2](https://www.msys2.org/), or [WSL](https://learn.microsoft.com/windows/wsl/).
 
 ### 2. Verify Environment
 ```bash
