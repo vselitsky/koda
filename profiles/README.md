@@ -29,7 +29,9 @@ Sizes marked `~` are estimates from standard bit-rate formulas; all others are e
 
 ### Gemma 4 · Google
 
-Google's Gemma 4 5B instruction model. Smallest footprint in the catalog — a good first model to try. Official GGUF from ggml-org.
+Google's Gemma 4 multimodal model family. All instruct variants include a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use. The `make download` step fetches both the model and mmproj automatically. Official GGUFs from ggml-org.
+
+#### E2B Instruct (5B)
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -38,6 +40,39 @@ Google's Gemma 4 5B instruction model. Smallest footprint in the catalog — a g
 
 **ALIAS:** `gemma-4-e2b-it`
 **Sources:** [ggml-org/gemma-4-E2B-it-GGUF](https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF) · [google/gemma-4-E2B-it](https://huggingface.co/google/gemma-4-E2B-it)
+
+#### E4B Instruct (8B)
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gemma-4-E4B-it.Q4_K_M` | 5.34 GB | Q4_K_M |
+| `.env-gemma-4-E4B-it.Q8_0` | 8.03 GB | Q8_0 |
+| `.env-gemma-4-E4B-it.F16` | 15.1 GB | F16 |
+
+**ALIAS:** `gemma-4-e4b-it`
+**Sources:** [ggml-org/gemma-4-E4B-it-GGUF](https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF) · [google/gemma-4-E4B-it](https://huggingface.co/google/gemma-4-E4B-it)
+
+#### 26B-A4B Instruct (MoE, 26B total / 4B active)
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gemma-4-26B-A4B-it.Q4_K_M` | 16.8 GB | Q4_K_M |
+| `.env-gemma-4-26B-A4B-it.Q8_0` | 26.9 GB | Q8_0 |
+| `.env-gemma-4-26B-A4B-it.F16` | 50.5 GB | F16 |
+
+**ALIAS:** `gemma-4-26b-a4b-it`
+**Sources:** [ggml-org/gemma-4-26B-A4B-it-GGUF](https://huggingface.co/ggml-org/gemma-4-26B-A4B-it-GGUF) · [google/gemma-4-26B-A4B-it](https://huggingface.co/google/gemma-4-26B-A4B-it)
+
+#### 31B Instruct
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-gemma-4-31B-it.Q4_K_M` | 18.7 GB | Q4_K_M |
+| `.env-gemma-4-31B-it.Q8_0` | 32.6 GB | Q8_0 |
+| `.env-gemma-4-31B-it.F16` | 61.4 GB | F16 |
+
+**ALIAS:** `gemma-4-31b-it`
+**Sources:** [ggml-org/gemma-4-31B-it-GGUF](https://huggingface.co/ggml-org/gemma-4-31B-it-GGUF) · [google/gemma-4-31B-it](https://huggingface.co/google/gemma-4-31B-it)
 
 ---
 
@@ -119,16 +154,31 @@ The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distill
 
 ---
 
-### Nemotron-3-Super-120B · NVIDIA
+### Nemotron · NVIDIA
 
-NVIDIA's 121B Nemotron H MoE model. Single-file GGUF from ggml-org. Requires substantial VRAM; pairs well with llama.cpp RPC for multi-machine offload.
+NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), official GGUFs from ggml-org. Well-suited for Mac Studio (Apple Silicon unified memory scales to 192 GB on M-series Ultra chips).
+
+#### Nemotron-Nano-3-30B (MoE, 30B total / 3.5B active)
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Nemotron-Nano-3-30B.Q4_K_M` | 24.5 GB | Q4_K_M |
+| `.env-Nemotron-Nano-3-30B.Q8_0` | 33.6 GB | Q8_0 |
+
+**ALIAS:** `nemotron-nano-3-30b`
+**Sources:** [ggml-org/Nemotron-Nano-3-30B-A3B-GGUF](https://huggingface.co/ggml-org/Nemotron-Nano-3-30B-A3B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16)
+
+#### Nemotron-3-Super-120B (MoE, 120B total / 12B active)
 
 | Profile | Size | Format |
 | --- | --- | --- |
 | `.env-Nemotron-3-Super-120B.Q4_K` | 69.9 GB | Q4_K |
 
 **ALIAS:** `nemotron-3-super-120b`
-**Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [nvidia/Nemotron-3-Super-120B](https://huggingface.co/nvidia/Nemotron-3-Super-120B)
+**Hardware:** Fits on a Mac Studio M2/M3/M4 Ultra (192 GB unified memory) or NVIDIA 80 GB+ GPU.
+**Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16)
+
+> The `nvidia/` repos (BF16, FP8, NVFP4, Base variants) distribute safetensors only. Use the `ggml-org` GGUFs above for llama.cpp inference.
 
 ---
 
@@ -148,12 +198,13 @@ NVIDIA's 121B Nemotron H MoE model. Single-file GGUF from ggml-org. Requires sub
 
 ## Recommended Starting Points
 
-| Goal | Profile |
+| Hardware | Recommended profiles |
 | --- | --- |
-| First local model, minimal VRAM | `.env-gemma-4-E2B-it.Q8_0` (5 GB) |
-| Best size/quality balance | `.env-Qwen3.5-9B.Q4_K_M` (~5 GB) or `.env-gpt-oss-20b.MXFP4` (12 GB) |
-| Reasoning tasks | `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
-| Large GPU (64–80 GB) | `.env-gpt-oss-120b.MXFP4` or `.env-Nemotron-3-Super-120B.Q4_K` |
+| Any machine (8 GB+) | `.env-gemma-4-E2B-it.Q8_0` (5 GB) · `.env-gemma-4-E4B-it.Q4_K_M` (5.3 GB) |
+| 16–24 GB VRAM / RAM | `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
+| 32–48 GB (Mac Studio M-series Pro/Max) | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
+| 64–96 GB (Mac Studio M-series Max) | `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
+| 128–192 GB (Mac Studio M-series Ultra) | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |
 | Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (544 GiB) |
 
 ---

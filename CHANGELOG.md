@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added Gemma 4 E4B-it, 26B-A4B-it, and 31B-it profiles (Q4_K_M/Q8_0/F16) with mmproj multimodal support via `ggml-org`
+- Added Nemotron-Nano-3-30B profiles (Q4_K_M/Q8_0) via `ggml-org/Nemotron-Nano-3-30B-A3B-GGUF`
+- Updated Recommended Starting Points with Mac Studio hardware tiers (8 GB → 192 GB)
 - Added Qwen3.5-27B profiles: `.env-Qwen3.5-27B.Q4_K_M` and `.env-Qwen3.5-27B.Q8_0` using `Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF`
 - Added Nemotron 3 Super 120B profile: `.env-Nemotron-3-Super-120B.Q4_K` using `ggml-org/Nemotron-3-Super-120B-GGUF` (69.9 GB, NVIDIA Nemotron H MoE)
 - Added Gemma 4 E2B Instruct profiles: `.env-gemma-4-E2B-it.Q8_0` and `.env-gemma-4-E2B-it.F16` using `ggml-org/gemma-4-E2B-it-GGUF`
