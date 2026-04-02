@@ -130,7 +130,6 @@ Koda is **local-first**. Your data never leaves your machine.
 | [**OPENCODE.md**](./OPENCODE.md) | Step-by-step guide for [OpenCode](https://opencode.ai) integration. |
 | [**VSCODE.md**](./VSCODE.md) | How to use Koda with VS Code (Copilot BYOM, Continue, Roo). |
 | [**TAILSCALE.md**](./TAILSCALE.md) | Private remote access and multi-machine RPC pooling. |
-| [**GGUF.md**](./GGUF.md) | An easy-to-read explainer on GGUF and quantization. |
 
 ---
 

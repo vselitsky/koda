@@ -102,7 +102,6 @@ Overrides can be passed inline to any `make` target:
   - [VS Code](./VSCODE.md) (Continue, Roo Code)
 - **Learning:**
   - [Bundled Profiles](./profiles/README.md)
-  - [GGUF & Local LLMs](./GGUF.md)
 
 ## Dependencies
 

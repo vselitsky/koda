@@ -61,5 +61,4 @@ Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
 | `OPENCODE.md` | Verified configuration guide for OpenCode. |
 | `VSCODE.md` | Integration guide for VS Code extensions. |
 | `TAILSCALE.md` | Guide for private access and multi-machine RPC pooling. |
-| `GGUF.md` | Explainer: what GGUF is and why to run locally. |
 | `CHANGELOG.md` | Version history (Keep a Changelog format). |

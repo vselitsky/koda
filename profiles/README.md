@@ -4,6 +4,23 @@ Each profile is a `.env-*` file in `profiles/` that configures `make download`, 
 
 ---
 
+## What is GGUF?
+
+**GGUF** (GPT-Generated Unified Format) is the standard file format for running LLMs locally with [llama.cpp](https://github.com/ggml-org/llama.cpp). It bundles the model weights, architecture metadata, and chat template into a single portable file.
+
+**Why run locally?**
+- **Privacy** — your prompts never leave your machine
+- **No rate limits** — your hardware is always available
+- **Cost** — no per-token fees after the initial hardware investment
+- **Control** — run any model, any quantization, any settings
+
+**Hardware acceleration** — llama.cpp offloads compute to the GPU automatically:
+- **Apple Silicon (Metal)** — unified memory means large models fit where discrete GPUs can't; Mac Studio M-series Ultra supports up to 192 GB
+- **NVIDIA (CUDA)** — industry standard on Linux/Windows
+- **AMD (ROCm/OpenCL)** — supported on Linux via the ROCm image
+
+---
+
 ## Quantization Guide
 
 GGUF models are quantized — their weights are compressed to reduce memory use with minimal quality loss. The format appears at the end of each profile filename.
@@ -15,8 +32,8 @@ GGUF models are quantized — their weights are compressed to reduce memory use 
 | **Q8_0** | ~8.5 | ~53% | Near-lossless. Perceptually indistinguishable from F16 for most tasks. |
 | **Q4_K_M** | ~4.5 | ~28% | 4-bit K-quant, "medium" mix — critical layers kept at higher precision. Best size/quality tradeoff; recommended default. |
 | **Q4_K** | ~4.5 | ~27% | 4-bit K-quant, base variant. Slightly smaller than Q4_K_M with marginally lower quality. |
-| **MXFP4** | 4 | ~25% | Microsoft Microscaling FP4. Hardware-native block-scaled 4-bit. Used by OpenAI GPT-OSS models. |
 | **Q4_X** | ~4.5 | ~28% | Extended 4-bit designed for large MoE weight structures. |
+| **MXFP4** | 4 | ~25% | Microsoft Microscaling FP4. Hardware-native block-scaled 4-bit. Used by OpenAI GPT-OSS models. |
 
 **VRAM/RAM rule of thumb:** file size + ~1–2 GB overhead for the KV cache at default context.
 Sizes marked `~` are estimates from standard bit-rate formulas; all others are exact.
