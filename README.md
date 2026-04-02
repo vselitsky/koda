@@ -105,8 +105,10 @@ docker compose --env-file profiles/.env-Qwen3.5-27B.Q4_K_M up -d
 | :--- | :--- | :--- |
 | **NVIDIA (Linux)** | ✅ Full | Requires [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). `compose.yaml` passes `--gpus all` automatically. |
 | **AMD (Linux)** | ✅ Full | Set `LLAMA_CPP_IMAGE=ghcr.io/ggml-org/llama.cpp:server-rocm` in `.env`. |
-| **Apple Silicon (macOS)** | ❌ CPU only | Docker on macOS runs in a Linux VM — Metal/GPU is not accessible. Use the native `make` path for GPU acceleration on Apple Silicon. |
-| **Windows** | ❌ CPU only | Same VM limitation as macOS unless using WSL2 with NVIDIA passthrough. |
+| **Apple Silicon (macOS)** | ❌ CPU only | Docker on macOS runs in a Linux VM — Metal/GPU is not accessible. |
+| **Windows** | ❌ CPU only | Same VM limitation. NVIDIA passthrough is possible via WSL2 but not officially supported here. |
+
+> **Apple Silicon and Windows users:** the `Makefile` path (Options A / B above) is required to get GPU acceleration. Docker is fine for CPU-only use or quick testing.
 
 ---
 
