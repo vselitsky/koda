@@ -225,11 +225,11 @@ Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
 
 ### Kimi-K2.5 · Moonshot AI
 
-1T-parameter MoE (32B activated). Extremely large — 544 GiB across 14 shards. Advanced profile; treat as multi-machine or server-class hardware only.
+1T-parameter MoE (32B activated). Extremely large — ~584 GB across 14 shards. Advanced profile; treat as multi-machine or server-class hardware only.
 
 | Profile | Size | Format |
 | --- | --- | --- |
-| `.env-Kimi-K2.5.Q4_X` | 544 GiB (14 shards) | Q4_X |
+| `.env-Kimi-K2.5.Q4_X` | ~584 GB (14 shards) | Q4_X |
 
 **ALIAS:** `kimi-k2.5`
 **Sampling:** `TEMP=1.0` (matches Moonshot AI's published evaluation setting)
@@ -246,7 +246,7 @@ Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
 | 32–48 GB VRAM / RAM | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
 | 64–96 GB VRAM / RAM | `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
 | 128–192 GB VRAM / RAM | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |
-| Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (544 GiB) |
+| Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (~584 GB) |
 
 ---
 
