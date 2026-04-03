@@ -18,7 +18,13 @@ Works with [OpenCode](./OPENCODE.md), [VS Code Copilot](./VSCODE.md), [Cursor](.
 
 ## 🚀 Quick Start
 
-### 1. Install Dependencies
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/a1exus/koda.git && cd koda
+```
+
+### 2. Install Dependencies
 
 **macOS / Linux**
 ```bash
@@ -43,12 +49,12 @@ docker compose --env-file profiles/.env-Qwen3.5-27B.Q4_K_M up -d
 ```
 See [Docker Compose](#-docker-compose) for GPU support details.
 
-### 2. Verify Environment
+### 3. Verify Environment
 ```bash
 make check
 ```
 
-### 3. Download & Serve
+### 4. Download & Serve
 
 Pick a model profile from [profiles/README.md](./profiles/README.md), then:
 
