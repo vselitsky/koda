@@ -1,0 +1,27 @@
+name: Validate Profiles
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'profiles/**'
+      - 'scripts/validate-profiles.sh'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'profiles/**'
+      - 'scripts/validate-profiles.sh'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Check all profiles have required fields
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run profile validation
+        run: sh scripts/validate-profiles.sh
