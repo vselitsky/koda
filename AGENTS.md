@@ -117,7 +117,7 @@ When adding a new `.env-*` profile, update these files to keep everything in syn
 2. **`AGENTS.md`** — add a row to the Bundled Profiles table below
 3. **`OPENCODE.md`** — add an entry to the `models` block in the JSON snippet
 4. **`VSCODE.md`** — add an entry to the `chatLanguageModels.json` snippet
-5. **`CURSOR.md`** — add a row to the Available Model Aliases table
+5. **`CURSOR.md`** — no edit needed; alias list links to `profiles/README.md` automatically
 6. **`CHANGELOG.md`** — add an entry under `[Unreleased] > Added`
 7. **`~/.config/opencode/opencode.json`** — add the alias to the live config
 8. **`~/Library/Application Support/Code - Insiders/User/chatLanguageModels.json`** — add the model entry

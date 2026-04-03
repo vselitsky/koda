@@ -151,7 +151,8 @@ Koda is **local-first** — your data never leaves your machine.
 | [**GEMINI.md**](./GEMINI.md) | Full Docker Compose usage, volume sharing, GPU config, and override reference |
 | [**OPENCODE.md**](./OPENCODE.md) | Integration guide for [OpenCode](https://opencode.ai) |
 | [**VSCODE.md**](./VSCODE.md) | Integration guide for VS Code (Copilot BYOM, Continue, Roo) |
-| [**CURSOR.md**](./CURSOR.md) | Integration guide for Cursor (requires HTTPS — Traefik or Tailscale) |
+| [**CURSOR.md**](./CURSOR.md) | Integration guide for Cursor (requires HTTPS — Traefik, Caddy, or Tailscale) |
+| [**CADDY.md**](./CADDY.md) | HTTPS termination for native `make serve` (Apple Silicon, Windows) |
 | [**TAILSCALE.md**](./TAILSCALE.md) | Private remote access and multi-machine RPC pooling |
 
 ---
@@ -168,7 +169,7 @@ Koda is a thin layer standing on the shoulders of giants:
 | **[gum](https://github.com/charmbracelet/gum)** | Interactive profile picker — alternative backend for `make select` if fzf is not installed |
 | **[Docker Compose](https://docs.docker.com/compose/)** | Containerized deployment path — no local binaries required |
 | **[Traefik](https://traefik.io/)** | Reverse proxy — provides HTTPS termination in the Docker Compose path |
-| **[Caddy](https://github.com/caddyserver/caddy)** | Reverse proxy — simple HTTPS termination for the native `make serve` path |
+| **[Caddy](https://github.com/caddyserver/caddy)** | HTTPS termination for the native `make serve` path — required for Cursor on Apple Silicon and Windows where Docker GPU is unavailable |
 | **[Tailscale](https://tailscale.com/)** | Private network — secure remote access and multi-machine RPC pooling |
 | **[Trivy](https://github.com/aquasecurity/trivy)** | Security scanning — automated vulnerability checks via GitHub Actions |
 
