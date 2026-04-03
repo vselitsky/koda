@@ -93,11 +93,11 @@ Google's Gemma 4 multimodal model family. All instruct variants include a vision
 
 ---
 
-### Qwen3.5 · Alibaba / HauhauCS
+### Qwen3.5 · Alibaba
 
-Alibaba's Qwen3.5 family in two sizes. Both are converted to GGUF by HauhauCS and include a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use when the mmproj file is in the same directory. The official Qwen weights are safetensors only; these profiles use the HauhauCS GGUF conversions.
+#### Qwen3.5-9B · HauhauCS Uncensored
 
-#### Qwen3.5-9B
+Converted to GGUF by HauhauCS. Includes a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use.
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -107,7 +107,9 @@ Alibaba's Qwen3.5 family in two sizes. Both are converted to GGUF by HauhauCS an
 **ALIAS:** `qwen3.5-9b`
 **Source:** [HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive)
 
-#### Qwen3.5-35B-A3B (MoE, 3B activated)
+#### Qwen3.5-35B-A3B · HauhauCS Uncensored (MoE, 3B activated)
+
+Uncensored GGUF conversion by HauhauCS. Includes a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use.
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -116,6 +118,18 @@ Alibaba's Qwen3.5 family in two sizes. Both are converted to GGUF by HauhauCS an
 
 **ALIAS:** `qwen3.5-35b-a3b`
 **Source:** [HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive)
+
+#### Qwen3.5-35B-A3B · Official (MoE, 3B activated)
+
+Official Alibaba weights in GGUF via Unsloth. Unified vision-language model with 201-language support and up to 262k native context. Use this profile for the standard (non-uncensored) version.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` | 22 GB | Q4_K_M |
+| `.env-Qwen3.5-35B-A3B-Qwen.Q8_0` | 36.9 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-35b-a3b`
+**Sources:** [unsloth/Qwen3.5-35B-A3B-GGUF](https://huggingface.co/unsloth/Qwen3.5-35B-A3B-GGUF) · [Qwen/Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B)
 
 #### Qwen3.5-27B · Claude 4.6 Opus Reasoning Distilled
 
@@ -195,7 +209,7 @@ NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), offi
 **Hardware:** Fits on a Mac Studio M2/M3/M4 Ultra (192 GB unified memory) or NVIDIA 80 GB+ GPU.
 **Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16)
 
-> The `nvidia/` repos (BF16, FP8, NVFP4, Base variants) distribute safetensors only. Use the `ggml-org` GGUFs above for llama.cpp inference.
+> The `nvidia/` repos distribute safetensors only — no GGUFs exist for the BF16, FP8, NVFP4, and Base variants (`NVIDIA-Nemotron-3-Super-120B-A12B-BF16`, `-FP8`, `-NVFP4`, `-Base-BF16`, `NVIDIA-Nemotron-3-Nano-30B-A3B-BF16`, `-FP8`, `-Base-BF16`). Use the `ggml-org` GGUFs above for llama.cpp inference.
 
 ---
 

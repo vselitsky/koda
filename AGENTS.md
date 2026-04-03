@@ -118,6 +118,7 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-Qwen3.5-9B.Q4_K_M` / `Q8_0` | `HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive` | ~5–10 GB | Multimodal (mmproj) |
 | `.env-Qwen3.5-27B.Q4_K_M` / `Q8_0` | `Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF` | 17–29 GB | Reasoning distill |
 | `.env-Qwen3.5-35B-A3B.Q4_K_M` / `Q8_0` | `HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive` | ~20–37 GB | MoE, multimodal (mmproj) |
+| `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` / `Q8_0` | `unsloth/Qwen3.5-35B-A3B-GGUF` | 22–37 GB | MoE, official Qwen weights |
 | `.env-gemma-4-E2B-it.Q8_0` / `F16` | `ggml-org/gemma-4-E2B-it-GGUF` | 5–9 GB | Multimodal (mmproj) |
 | `.env-gemma-4-E4B-it.Q4_K_M` / `Q8_0` / `F16` | `ggml-org/gemma-4-E4B-it-GGUF` | 5–15 GB | Multimodal (mmproj) |
 | `.env-gemma-4-26B-A4B-it.Q4_K_M` / `Q8_0` / `F16` | `ggml-org/gemma-4-26B-A4B-it-GGUF` | 17–51 GB | MoE, multimodal (mmproj) |
