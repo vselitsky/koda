@@ -42,7 +42,7 @@ pip install huggingface_hub[cli]
 ```
 > `make` is required on Windows. Use [WSL](https://learn.microsoft.com/windows/wsl/), then inside WSL:
 > ```bash
-> sudo apt install git make
+> sudo apt update && sudo apt install git make
 > ```
 
 <a name="docker"></a>
