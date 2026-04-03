@@ -10,8 +10,8 @@ Cursor requires an **HTTPS endpoint** — it will not connect to a plain `http:/
 
 | Method | Complexity | Guide |
 | --- | --- | --- |
-| **Tailscale** (recommended) | Low — install + `tailscale serve` | [TAILSCALE.md](./TAILSCALE.md) |
-| **Traefik** (Docker path) | Low — already configured in `compose.yaml` | [GEMINI.md](./GEMINI.md) |
+| **Traefik** (Docker path) | Lowest — already configured in `compose.yaml`, just `docker compose up` | [GEMINI.md](./GEMINI.md) |
+| **Tailscale** | Low — install + `tailscale serve` | [TAILSCALE.md](./TAILSCALE.md) |
 | **Caddy** | Medium — local reverse proxy | `caddy reverse-proxy --from https://localhost:8443 --to localhost:8080` |
 
 Once you have an HTTPS URL (e.g. `https://my-machine.tail1234.ts.net`), use that as the base URL below.
