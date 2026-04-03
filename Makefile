@@ -24,12 +24,12 @@ endif
 
 # Tilde expansion for paths
 EXP_MODEL_DIR := $(shell echo "$(MODEL_DIR)" | sed "s|^~|$$HOME|")
-# Check if model exists locally, otherwise try to find it in HF cache
+# Check if model exists locally, otherwise try to find it in HF cache (read-only, no download)
 MODEL := $(shell \
 	if [ -f "$(EXP_MODEL_DIR)/$(MODEL_FILE)" ]; then \
 		echo "$(EXP_MODEL_DIR)/$(MODEL_FILE)"; \
 	else \
-		hf download $(HF_REPO) $(MODEL_FILE) 2>/dev/null | tail -n 1; \
+		hf download $(HF_REPO) $(MODEL_FILE) --local-files-only 2>/dev/null | tail -n 1; \
 	fi)
 DOWNLOAD_INCLUDE ?= $(MODEL_FILE)
 
