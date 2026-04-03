@@ -53,7 +53,7 @@ docker compose -f compose.yaml -f compose.traefik.yml \
   --env-file profiles/.env-<model>.<quant> up -d
 ```
 
-The external `traefik` Docker network must already exist (`docker network create traefik`). All Traefik labels and the network join live in `compose.traefik.yml` — the base `compose.yaml` uses `expose` only and has no Traefik dependency.
+Assumes Traefik is already running and its Docker network exists. All labels and the network join live in `compose.traefik.yml` — the base `compose.yaml` uses `expose` only and has no Traefik dependency.
 
 ## Smart Model Resolution
 

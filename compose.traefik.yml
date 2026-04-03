@@ -1,11 +1,9 @@
-# Traefik override — join the external Traefik network and enable routing.
+# Traefik override — join the existing external Traefik network and enable routing.
+# Assumes Traefik is already running and the network exists.
 #
 # Usage:
 #   docker compose -f compose.yaml -f compose.traefik.yml \
 #     --env-file profiles/.env-<model>.<quant> up -d
-#
-# Required: the external Traefik network must already exist.
-#   docker network create traefik
 
 name: koda
 
