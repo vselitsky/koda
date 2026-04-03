@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2026-04-03]
 
 ### Added
+- Added `git clone` as step 1 in the Quick Start section
+- Added HTML anchors to OS-specific install sections (`#macos-linux`, `#windows`, `#docker`) for direct linking
+
+### Changed
+- Simplified Windows `make` prerequisite to WSL only — removed Git Bash and MSYS2 options; added `sudo apt update && sudo apt install git make` command
+- Reduced redundancy across integration guides: replaced CURSOR.md alias table with a link to `profiles/README.md#api-identity-aliases`; collapsed OPENCODE.md and VSCODE.md compatibility notes to a single line linking to README Quick Start
+
+### Added
 - Added Gemma 4 E4B-it, 26B-A4B-it, and 31B-it profiles (Q4_K_M/Q8_0/F16) with mmproj multimodal support via `ggml-org`
 - Added Nemotron-Nano-3-30B profiles (Q4_K_M/Q8_0) via `ggml-org/Nemotron-Nano-3-30B-A3B-GGUF`
 - Updated Recommended Starting Points with Mac Studio hardware tiers (8 GB → 192 GB)
