@@ -1,12 +1,17 @@
 # Caddy HTTPS for Native `make serve`
 
-Caddy provides HTTPS termination for the native `make serve` path — the case where you cannot use Docker because GPU acceleration is not available inside containers (Apple Silicon, Windows).
+Caddy provides local and LAN HTTPS termination for the native `make serve` path. Use it when:
 
-| Scenario | Use |
+- You need HTTPS for Cursor but don't have Tailscale
+- You're on the same machine or same local network as the server
+
+If you have Tailscale, use `tailscale serve` instead — it provisions a trusted certificate automatically with no extra setup. See [TAILSCALE.md](./TAILSCALE.md).
+
+| Scenario | Recommended |
 | :--- | :--- |
-| Apple Silicon (Metal) | `make serve` + Caddy |
-| Windows (native GPU) | `make serve` + Caddy |
-| Linux with NVIDIA/AMD | Docker + Traefik, or `make serve` + Caddy |
+| Private remote access | Tailscale — HTTPS built in |
+| Local machine or LAN, no Tailscale | Caddy |
+| Docker | Traefik via `compose.traefik.yml` |
 
 ---
 

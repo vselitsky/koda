@@ -8,11 +8,11 @@ Cursor requires an **HTTPS endpoint** — it will not connect to a plain `http:/
 
 **Options:**
 
-| Method | Works with | Complexity | Guide |
+| Method | Works with | HTTPS | Guide |
 | --- | --- | --- | --- |
-| **Traefik** | Docker only | Lowest — already configured, just `docker compose up` | [GEMINI.md](./GEMINI.md) |
-| **Caddy** | `make serve` (non-Docker) | Low — recommended for Apple Silicon and Windows where Docker can't do GPU | [CADDY.md](./CADDY.md) |
-| **Tailscale** | `make serve` or Docker | Low — install + `tailscale serve` | [TAILSCALE.md](./TAILSCALE.md) |
+| **Traefik** | Docker only | Via reverse proxy | [GEMINI.md](./GEMINI.md) |
+| **Tailscale** | `make serve` or Docker | Built-in — `tailscale serve` provisions a cert automatically | [TAILSCALE.md](./TAILSCALE.md) |
+| **Caddy** | `make serve` (non-Docker) | Local/LAN only — no Tailscale, same machine or same network | [CADDY.md](./CADDY.md) |
 
 Once you have an HTTPS URL (e.g. `https://my-machine.tail1234.ts.net`), use that as the base URL below.
 
