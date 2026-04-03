@@ -40,7 +40,7 @@ Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
 
 ## Key Behaviors
 
-- **Smart Model Resolution**: The Makefile looks for models in `MODEL_DIR` first, then falls back to the default Hugging Face cache using `hf download`.
+- **Smart Model Resolution**: The Makefile looks for models in `MODEL_DIR` first, then searches `~/.cache/huggingface/hub` directly. Never triggers an implicit download — run `make download ENV=...` explicitly if the model is missing.
 - **Model Identity (ALIAS)**: Always use `ALIAS` in profiles to ensure consistent IDs for external tools (OpenCode, VS Code).
 - **Reasoning models**: Output appears in `<think>...</think>` blocks.
 - **Context window**: `CTX=0` uses the model's native window.

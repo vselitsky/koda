@@ -48,11 +48,11 @@ You can override the container name or the image (e.g., for ROCm) via environmen
 
 ## Smart Model Resolution
 
-The `Makefile` includes logic to automatically resolve model paths:
+The `Makefile` resolves model paths without triggering implicit downloads:
 1.  **Local Check:** It first looks in `${MODEL_DIR}/${MODEL_FILE}` (with tilde expansion).
-2.  **Cache Fallback:** If not found locally, it uses `hf download` to locate the model in the default Hugging Face cache.
+2.  **Cache Fallback:** If not found locally, it searches `~/.cache/huggingface/hub` directly via `find` — no network access.
 
-This ensures `make serve` and `make chat` work seamlessly regardless of whether the model was downloaded to a specific folder or the default cache.
+If the model isn't found in either location, `make serve`/`make chat` will fail immediately with a clear error. Run `make download ENV=...` first to fetch the model.
 
 ## Key Commands
 

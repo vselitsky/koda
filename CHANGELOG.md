@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed the `OPENCODE.md` integration guide to use the correct `provider` record and `options` schema required by OpenCode
 - Fixed a corrupted `Makefile` that was causing syntax errors during `make serve`
+- Fixed `make serve` hanging silently when a model was not yet downloaded — Makefile now searches `~/.cache/huggingface/hub` via `find -L` instead of `hf download`, preventing implicit background downloads for large models
 - Fixed tilde expansion in `Makefile` to ensure robust path handling for all model-related files
 
 ## [2026-03-27]

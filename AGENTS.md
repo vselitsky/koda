@@ -70,7 +70,7 @@ Integrating with external tools (OpenCode, VS Code, etc.) requires matching the 
 
 The `Makefile` dynamically resolves the `MODEL` path:
 - **Local:** Checks `$(MODEL_DIR)/$(MODEL_FILE)` first (handles `~` expansion).
-- **Cache:** Falls back to the Hugging Face cache via `hf download` if the local file is missing.
+- **Cache:** Falls back to the Hugging Face cache (`~/.cache/huggingface/hub`) via `find` if the local file is missing — no network access, no implicit download.
 - **Verification:** Always use `make check-model ENV=...` to verify path resolution before execution.
 
 ## Running the Model
