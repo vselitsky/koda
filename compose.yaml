@@ -28,18 +28,11 @@ services:
       - ${MODEL_DIR:?set MODEL_DIR in .env or your shell}:/models:ro
       - ~/.cache/huggingface:/root/.cache/huggingface:ro
       - ./scripts/compose-entrypoint.sh:/entrypoints/compose-entrypoint.sh:ro
+    expose:
+      - "8080"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-    ports:
-      - "${PORT:-8080}:8080"
-    labels:
-      traefik.enable: ${TRAEFIK_ENABLE:-false}
-      traefik.docker.network: ${TRAEFIK_NETWORK:-traefik}
-      traefik.http.routers.koda.rule: Host(`${TRAEFIK_HOST:-koda.localhost}`)
-      traefik.http.routers.koda.entrypoints: ${TRAEFIK_ENTRYPOINTS:-websecure}
-      traefik.http.routers.koda.tls: ${TRAEFIK_TLS:-true}
-      traefik.http.services.koda.loadbalancer.server.port: "8080"

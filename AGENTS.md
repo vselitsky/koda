@@ -8,7 +8,7 @@ The main user guide is `README.md`. Bundled model catalog and profile-specific c
 
 Treat macOS on Apple Silicon, Linux with NVIDIA GPUs (CUDA), and Linux with AMD GPUs (ROCm/OpenCL) as the primary target environments.
 
-There is also a Compose deployment path in `compose.yaml`, intended for reverse-proxy setups such as Traefik.
+There is also a Compose deployment path in `compose.yaml`. The base file uses `expose` only — no external network dependency. Traefik integration is provided via `compose.traefik.yml` as a separate override, joined with `-f compose.yaml -f compose.traefik.yml`. Never add the Traefik network or labels directly to `compose.yaml`.
 
 ## Key Binaries
 

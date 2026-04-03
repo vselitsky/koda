@@ -45,9 +45,15 @@ The `compose.yaml` mounts two key directories:
 You can override the container name or the image (e.g., for ROCm) via environment variables or by setting them in your `.env` file:
 - `CONTAINER_NAME=koda-custom`: Rename the container.
 - `LLAMA_CPP_IMAGE=ghcr.io/ggml-org/llama.cpp:server-rocm`: Use the AMD/ROCm image.
-- `PORT=9090`: Change the host port the server is bound to (default `8080`).
 
-**Traefik integration** is opt-in. Set `TRAEFIK_ENABLE=true` in your `.env` and ensure the external `traefik` Docker network exists before starting.
+**Traefik integration** uses a separate override file so the base `compose.yaml` has no dependency on an external network:
+
+```bash
+docker compose -f compose.yaml -f compose.traefik.yml \
+  --env-file profiles/.env-<model>.<quant> up -d
+```
+
+The external `traefik` Docker network must already exist (`docker network create traefik`). All Traefik labels and the network join live in `compose.traefik.yml` — the base `compose.yaml` uses `expose` only and has no Traefik dependency.
 
 ## Smart Model Resolution
 
