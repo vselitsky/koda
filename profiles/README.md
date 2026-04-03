@@ -187,29 +187,37 @@ The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distill
 
 ### Nemotron · NVIDIA
 
-NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), official GGUFs from ggml-org. Well-suited for Apple Silicon with large unified memory (M-series Ultra scales to 192 GB).
+NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE). GGUFs sourced from ggml-org (official) and community converters (unsloth, lmstudio-community). Well-suited for Apple Silicon with large unified memory (M-series Ultra scales to 192 GB).
 
 #### Nemotron-Nano-3-30B (MoE, 30B total / 3.5B active)
 
-| Profile | Size | Format |
-| --- | --- | --- |
-| `.env-Nemotron-Nano-3-30B.Q4_K_M` | 24.5 GB | Q4_K_M |
-| `.env-Nemotron-Nano-3-30B.Q8_0` | 33.6 GB | Q8_0 |
+Instruct variant. Q4_K_M and Q8_0 from ggml-org (official); F16 and BF16 from community converters.
+
+| Profile | Size | Format | Source |
+| --- | --- | --- | --- |
+| `.env-Nemotron-Nano-3-30B.Q4_K_M` | 24.5 GB | Q4_K_M | ggml-org |
+| `.env-Nemotron-Nano-3-30B.Q8_0` | 33.6 GB | Q8_0 | ggml-org |
+| `.env-Nemotron-Nano-3-30B.F16` | 63.1 GB | F16 | lmstudio-community (2 shards) |
+| `.env-Nemotron-Nano-3-30B.BF16` | 63.2 GB | BF16 | unsloth (2 shards) |
 
 **ALIAS:** `nemotron-nano-3-30b`
-**Sources:** [ggml-org/Nemotron-Nano-3-30B-A3B-GGUF](https://huggingface.co/ggml-org/Nemotron-Nano-3-30B-A3B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16)
+**Sources:** [ggml-org/Nemotron-Nano-3-30B-A3B-GGUF](https://huggingface.co/ggml-org/Nemotron-Nano-3-30B-A3B-GGUF) · [lmstudio-community/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF](https://huggingface.co/lmstudio-community/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF) · [unsloth/Nemotron-3-Nano-30B-A3B-GGUF](https://huggingface.co/unsloth/Nemotron-3-Nano-30B-A3B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16)
 
 #### Nemotron-3-Super-120B (MoE, 120B total / 12B active)
 
-| Profile | Size | Format |
-| --- | --- | --- |
-| `.env-Nemotron-3-Super-120B.Q4_K` | 69.9 GB | Q4_K |
+Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
+
+| Profile | Size | Format | Source |
+| --- | --- | --- | --- |
+| `.env-Nemotron-3-Super-120B.Q4_K` | 69.9 GB | Q4_K | ggml-org |
+| `.env-Nemotron-3-Super-120B.Q4_K_M` | 82.5 GB | Q4_K_M | unsloth (3 shards) |
+| `.env-Nemotron-3-Super-120B.Q8_0` | 128.5 GB | Q8_0 | unsloth (4 shards) |
 
 **ALIAS:** `nemotron-3-super-120b`
-**Hardware:** Requires 192 GB unified memory (Apple Silicon M-series Ultra) or an NVIDIA 80 GB+ GPU.
-**Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16)
+**Hardware:** Requires 192 GB+ unified memory or NVIDIA 80 GB+ GPU (Q8_0 needs 192 GB+).
+**Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF](https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16)
 
-> The `nvidia/` repos distribute safetensors only — no GGUFs exist for the BF16, FP8, NVFP4, and Base variants (`NVIDIA-Nemotron-3-Super-120B-A12B-BF16`, `-FP8`, `-NVFP4`, `-Base-BF16`, `NVIDIA-Nemotron-3-Nano-30B-A3B-BF16`, `-FP8`, `-Base-BF16`). Use the `ggml-org` GGUFs above for llama.cpp inference.
+> **FP8 / NVFP4 / Base variants:** The `nvidia/` FP8 and NVFP4 instruct repos are alternative precisions of the same weights — use the GGUF profiles above. The NVFP4 GGUF requires the Salamander fork of llama.cpp and is not supported here. No GGUFs exist for the Base variants (`-Base-BF16`).
 
 ---
 

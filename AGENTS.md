@@ -127,5 +127,7 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-gpt-oss-120b.MXFP4` | `ggml-org/gpt-oss-120b-GGUF` | 63.4 GB | 3 shards, harmony-style |
 | `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` | `ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF` | 34.8 GB | Reasoning, `<think>` blocks |
 | `.env-Nemotron-Nano-3-30B.Q4_K_M` / `Q8_0` | `ggml-org/Nemotron-Nano-3-30B-A3B-GGUF` | 25–34 GB | Mamba-2 MoE hybrid |
+| `.env-Nemotron-Nano-3-30B.F16` / `BF16` | `lmstudio-community` / `unsloth` | 63 GB | Mamba-2 MoE hybrid, 2 shards |
 | `.env-Nemotron-3-Super-120B.Q4_K` | `ggml-org/Nemotron-3-Super-120B-GGUF` | 69.9 GB | Mamba-2 MoE hybrid |
+| `.env-Nemotron-3-Super-120B.Q4_K_M` / `Q8_0` | `unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF` | 83–129 GB | Mamba-2 MoE hybrid, 3–4 shards |
 | `.env-Kimi-K2.5.Q4_X` | `AesSedai/Kimi-K2.5-GGUF` | 544 GiB | 14 shards, extreme scale |

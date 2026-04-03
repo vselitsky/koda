@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Nemotron 3 Super 120B profile: `.env-Nemotron-3-Super-120B.Q4_K` using `ggml-org/Nemotron-3-Super-120B-GGUF` (69.9 GB, NVIDIA Nemotron H MoE)
 - Added Gemma 4 E2B Instruct profiles: `.env-gemma-4-E2B-it.Q8_0` and `.env-gemma-4-E2B-it.F16` using `ggml-org/gemma-4-E2B-it-GGUF`
 - Added all remaining bundled profiles: Qwen3.5-9B, Qwen3.5-35B-A3B (HauhauCS), gpt-oss-20b, gpt-oss-120b, DeepSeek-R1-Distill-Qwen-32B, Kimi-K2.5
+- Added Nemotron-Nano-3-30B F16 and BF16 profiles (lmstudio-community / unsloth, 63 GB, 2 shards)
+- Added Nemotron-3-Super-120B Q4_K_M and Q8_0 profiles (unsloth, 83–129 GB, 3–4 shards)
 - Added Qwen3.5-35B-A3B official profiles (`.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` / `Q8_0`) using `unsloth/Qwen3.5-35B-A3B-GGUF` (22–37 GB); official Alibaba weights alternative to the HauhauCS uncensored variant
 - Rewrote `profiles/README.md`: model-grouped layout, quantization guide, per-model variant tables, noted broken profiles (Jackrong Qwen3.5-27B has no direct GGUF source)
 - Added `ALIAS` support to the `Makefile` and `compose-entrypoint.sh` to allow setting a consistent model ID for the OpenAI-compatible API
