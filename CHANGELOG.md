@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Nemotron-Nano-3-30B F16 and BF16 profiles (lmstudio-community / unsloth, 63 GB, 2 shards)
 - Added Nemotron-3-Super-120B Q4_K_M and Q8_0 profiles (unsloth, 83–129 GB, 3–4 shards)
 - Added Qwen3.5-35B-A3B official profiles (`.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` / `Q8_0`) using `unsloth/Qwen3.5-35B-A3B-GGUF` (22–37 GB); official Alibaba weights alternative to the HauhauCS uncensored variant
-- Rewrote `profiles/README.md`: model-grouped layout, quantization guide, per-model variant tables, noted broken profiles (Jackrong Qwen3.5-27B has no direct GGUF source)
+- Rewrote `profiles/README.md`: model-grouped layout, quantization guide, per-model variant tables
 - Added `ALIAS` support to the `Makefile` and `compose-entrypoint.sh` to allow setting a consistent model ID for the OpenAI-compatible API
 - Updated all `.env-*` model profiles with a specific `ALIAS` (e.g., `qwen3.5-27b`) to match external tool configurations
 - Added sampling variables `TEMP` (default 0.6) and `TOP_P` (default 0.95) as structured overrides in the `Makefile`
@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed the `OPENCODE.md` integration guide to use the correct `provider` record and `options` schema required by OpenCode
 - Fixed a corrupted `Makefile` that was causing syntax errors during `make serve`
 - Fixed `make serve` hanging silently when a model was not yet downloaded — Makefile now searches `~/.cache/huggingface/hub` via `find -L` instead of `hf download`, preventing implicit background downloads for large models
+- Fixed Qwen3.5-27B profile filenames (were `Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled.Q*.gguf`, actual filenames are `Qwen3.5-27B.Q*.gguf`); added `mmproj-BF16.gguf` to `DOWNLOAD_INCLUDE` as the repo includes a vision encoder
 - Fixed tilde expansion in `Makefile` to ensure robust path handling for all model-related files
 
 ## [2026-03-27]
