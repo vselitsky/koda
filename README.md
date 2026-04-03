@@ -137,8 +137,17 @@ Koda is **local-first**. Your data never leaves your machine.
 ## 🏗️ Built On
 
 Koda is a thin layer standing on the shoulders of giants:
-- **[llama.cpp](https://github.com/ggml-org/llama.cpp)** — The engine.
-- **[huggingface-cli](https://huggingface.co/docs/huggingface_hub/guides/cli)** — The supply line.
+
+| Project | Role |
+| :--- | :--- |
+| **[llama.cpp](https://github.com/ggml-org/llama.cpp)** | Inference engine — provides `llama-server` (API + WebUI) and `llama-cli` (terminal chat) |
+| **[huggingface-cli](https://huggingface.co/docs/huggingface_hub/guides/cli)** | Model downloader — `make download` uses `hf` to fetch GGUF files from HuggingFace |
+| **[fzf](https://github.com/junegunn/fzf)** | Interactive profile picker — primary backend for `make select` |
+| **[gum](https://github.com/charmbracelet/gum)** | Interactive profile picker — alternative backend for `make select` if fzf is not installed |
+| **[Docker Compose](https://docs.docker.com/compose/)** | Containerized deployment path — no local binaries required |
+| **[Traefik](https://traefik.io/)** | Reverse proxy — provides HTTPS termination in the Docker Compose path |
+| **[Tailscale](https://tailscale.com/)** | Private network — secure remote access and multi-machine RPC pooling |
+| **[Trivy](https://github.com/aquasecurity/trivy)** | Security scanning — automated vulnerability checks via GitHub Actions |
 
 ---
 
