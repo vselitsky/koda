@@ -48,7 +48,7 @@ Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
 - **Prompt format**: Prefers embedded Jinja templates; set `PROMPT_FORMAT=template` to force `CHAT_TPL`.
 - **Docker Compose**: Uses a healthcheck to ensure the model is loaded before reporting "healthy". GPU passthrough works on NVIDIA/AMD Linux; Apple Silicon and Windows are CPU-only in Docker.
 - **Multimodal**: Koda auto-detects `mmproj` files in `MODEL_DIR`. For multimodal profiles, `DOWNLOAD_INCLUDE` fetches both the model and mmproj in one `make download` call.
-- **Bundled profiles**: See `profiles/README.md` for the full catalog (Gemma 4, Qwen3.5, GPT-OSS, DeepSeek, Nemotron, Kimi-K2.5). Hardware tiers from 8 GB to 192 GB (Mac Studio Ultra) are covered.
+- **Bundled profiles**: See `profiles/README.md` for the full catalog (Gemma 4, Qwen3.5, GPT-OSS, DeepSeek, Nemotron, Kimi-K2.5). Hardware tiers from 8 GB to 192 GB are covered.
 
 ## Documentation Files
 

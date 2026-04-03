@@ -15,7 +15,7 @@ Each profile is a `.env-*` file in `profiles/` that configures `make download`, 
 - **Control** — run any model, any quantization, any settings
 
 **Hardware acceleration** — llama.cpp offloads compute to the GPU automatically:
-- **Apple Silicon (Metal)** — unified memory means large models fit where discrete GPUs can't; Mac Studio M-series Ultra supports up to 192 GB
+- **Apple Silicon (Metal)** — unified memory means large models fit where discrete GPUs can't; M-series Ultra chips support up to 192 GB
 - **NVIDIA (CUDA)** — industry standard on Linux/Windows
 - **AMD (ROCm/OpenCL)** — supported on Linux via the ROCm image
 
@@ -187,7 +187,7 @@ The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distill
 
 ### Nemotron · NVIDIA
 
-NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), official GGUFs from ggml-org. Well-suited for Mac Studio (Apple Silicon unified memory scales to 192 GB on M-series Ultra chips).
+NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), official GGUFs from ggml-org. Well-suited for Apple Silicon with large unified memory (M-series Ultra scales to 192 GB).
 
 #### Nemotron-Nano-3-30B (MoE, 30B total / 3.5B active)
 
@@ -206,7 +206,7 @@ NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), offi
 | `.env-Nemotron-3-Super-120B.Q4_K` | 69.9 GB | Q4_K |
 
 **ALIAS:** `nemotron-3-super-120b`
-**Hardware:** Fits on a Mac Studio M2/M3/M4 Ultra (192 GB unified memory) or NVIDIA 80 GB+ GPU.
+**Hardware:** Requires 192 GB unified memory (Apple Silicon M-series Ultra) or an NVIDIA 80 GB+ GPU.
 **Sources:** [ggml-org/Nemotron-3-Super-120B-GGUF](https://huggingface.co/ggml-org/Nemotron-3-Super-120B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16)
 
 > The `nvidia/` repos distribute safetensors only — no GGUFs exist for the BF16, FP8, NVFP4, and Base variants (`NVIDIA-Nemotron-3-Super-120B-A12B-BF16`, `-FP8`, `-NVFP4`, `-Base-BF16`, `NVIDIA-Nemotron-3-Nano-30B-A3B-BF16`, `-FP8`, `-Base-BF16`). Use the `ggml-org` GGUFs above for llama.cpp inference.
@@ -233,9 +233,9 @@ NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE), offi
 | --- | --- |
 | Any machine (8 GB+) | `.env-gemma-4-E2B-it.Q8_0` (5 GB) · `.env-gemma-4-E4B-it.Q4_K_M` (5.3 GB) |
 | 16–24 GB VRAM / RAM | `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
-| 32–48 GB (Mac Studio M-series Pro/Max) | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
-| 64–96 GB (Mac Studio M-series Max) | `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
-| 128–192 GB (Mac Studio M-series Ultra) | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |
+| 32–48 GB VRAM / RAM | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
+| 64–96 GB VRAM / RAM | `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
+| 128–192 GB VRAM / RAM | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |
 | Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (544 GiB) |
 
 ---
