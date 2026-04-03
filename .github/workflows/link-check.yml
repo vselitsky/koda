@@ -1,0 +1,36 @@
+name: Link Check
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**.md'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**.md'
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday at 00:00
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    name: Check links in markdown files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --no-progress
+            --exclude-mail
+            --exclude 'localhost'
+            --exclude '127\.0\.0\.1'
+            --exclude 'koda\.localhost'
+            '**/*.md'
+          fail: true
