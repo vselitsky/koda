@@ -189,6 +189,12 @@ export-vscode:
 serve:
 	$(call require_cmd,llama-server,llama.cpp)
 	@$(MAKE) check-model ENV=$(ENV) --no-print-directory
+	@if [ "$(HOST)" != "127.0.0.1" ] && [ -z "$(API_KEY)" ]; then \
+	  echo ""; \
+	  echo "Warning: serving on $(HOST) with no API_KEY set."; \
+	  echo "         Set API_KEY=<secret> to require authentication."; \
+	  echo ""; \
+	fi
 	llama-server \
 	  -m $(MODEL) \
 	  -c $(CTX) \
