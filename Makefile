@@ -33,7 +33,7 @@ MODEL := $(shell \
 	fi)
 DOWNLOAD_INCLUDE ?= $(MODEL_FILE)
 
-.PHONY: help check check-model cache download serve chat list select export-opencode export-vscode
+.PHONY: help check check-model cache download serve chat list select export-opencode export-vscode smoke-test
 
 ifeq ($(PROMPT_FORMAT),jinja)
 PROMPT_ARGS := --jinja
@@ -115,6 +115,7 @@ help:
 	@echo "Utilities:"
 	@echo "  check            Verify required binaries are installed and on PATH"
 	@echo "  check-model      Verify the model file for ENV is present"
+	@echo "  smoke-test       Check that the server is responding on PORT"
 	@echo "  export-opencode  Print OpenCode configuration snippet for current profile"
 	@echo "  export-vscode    Print VS Code configuration snippet for current profile"
 	@echo ""
@@ -175,6 +176,12 @@ check-model:
 cache:
 	$(call require_cmd,hf,huggingface-cli)
 	hf cache ls
+
+smoke-test:
+	@echo "Checking http://$(HOST):$(PORT)/health ..."
+	@curl -sf http://$(HOST):$(PORT)/health | grep -q '"status":"ok"' && \
+	  echo "OK: server is healthy" || \
+	  { echo "Error: server not responding on port $(PORT). Is make serve running?"; exit 1; }
 
 export-opencode:
 	@echo "Copy this into your ~/.config/opencode/opencode.json 'models' record:"
