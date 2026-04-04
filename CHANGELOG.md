@@ -7,7 +7,7 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 
 ## [Unreleased]
 
-## [2026-04-03.1]
+## [2026-04-03]
 
 ### Added
 - Added `.gitignore` — ignores model weights (`*.gguf`, `*.safetensors`, etc.), local env overrides, macOS metadata, editor files, and Trivy cache
@@ -21,25 +21,6 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 - Added CI: profile validation workflow (`.github/workflows/validate-profiles.yml`)
 - Added CI: shellcheck workflow for `scripts/` (`.github/workflows/shellcheck.yml`)
 - Added CI: link checker workflow using lychee (`.github/workflows/link-check.yml`)
-
-### Changed
-- Updated Trivy action from `@master` to `v0.35.0` (latest; also adopts `v`-prefixed tag per aquasecurity's supply chain security migration)
-- `make serve` now warns when `HOST` is not `127.0.0.1` and `API_KEY` is empty
-- Traefik integration is now opt-in via `compose.traefik.yml` override — `docker compose up` no longer requires an external Traefik network
-- CURSOR.md HTTPS options table updated: Tailscale noted as having built-in HTTPS; Caddy scoped to local/LAN only
-- CHANGELOG versioning corrected from SemVer to CalVer
-- Linked Apache 2.0 LICENSE by name in README footer
-- `MEM_RESERVE` and `make smoke-test` added to AGENTS.md reference tables
-- Bumped `actions/checkout` from v4 to v6 and `github/codeql-action` from v3 to v4 via Dependabot
-- Aligned `AGENTS.md` and `CLAUDE.md` with current project state: WSL-only Windows, full targets table, Traefik override pattern, API key warning, `CADDY.md`/`CONTRIBUTING.md` in docs, CalVer label, Kimi-K2.5 size fix
-
-### Fixed
-- Pushed `2026-03-27` tag to remote so CHANGELOG comparison URLs resolve
-- Excluded `instagram.com` from lychee link checker (returns 429 for bots)
-
-## [2026-04-03]
-
-### Added
 - Added `git clone` as step 1 in the Quick Start section
 - Added HTML anchors to OS-specific install sections (`#macos-linux`, `#windows`, `#docker`) for direct linking
 - Added Caddy to the Built On table in README.md as the HTTPS reverse proxy option for the native `make serve` path
@@ -73,22 +54,32 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 ### Changed
 - Simplified Windows `make` prerequisite to WSL only — removed Git Bash and MSYS2 options; added `sudo apt update && sudo apt install git make` command
 - Reduced redundancy across integration guides: replaced CURSOR.md alias table with a link to `profiles/README.md#api-identity-aliases`; collapsed OPENCODE.md and VSCODE.md compatibility notes to a single line linking to README Quick Start
-- Clarified CURSOR.md HTTPS options table with a "Works with" column — Traefik is Docker-only; Tailscale and Caddy work with both `make serve` and Docker
+- Clarified CURSOR.md HTTPS options: Tailscale noted as having built-in HTTPS; Caddy scoped to local/LAN only
 - Reorganized documentation: moved `PROFILES.md` to `profiles/README.md` for better directory-level discoverability
 - Moved all model profile `.env-*` files into the `profiles/` directory
 - Rewrote `README.md` for significantly better human readability, including a new Table of Contents and "Built On" section
 - Updated all integration guides (`OPENCODE.md`, `VSCODE.md`, `GEMINI.md`, `AGENTS.md`) with the latest configuration variables and `profiles/` paths
 - Updated `VSCODE.md` to document the `chatLanguageModels.json` format (`customoai` vendor) with all 13 individual model entries
 - Replaced Mac Studio-specific hardware tier references with generic RAM/VRAM tier descriptions in `profiles/README.md`
-- Fixed `make download` to pass each filename in `DOWNLOAD_INCLUDE` as a separate `--include` flag (via `$(foreach)`) — previously all filenames were passed as one quoted string and no files were fetched
+- Fixed `make download` to pass each filename in `DOWNLOAD_INCLUDE` as a separate `--include` flag (via `$(foreach)`)
 - Standardized Kimi-K2.5 size from GiB to GB across catalog and Recommended Starting Points
+- Updated Trivy action from `@master` to `v0.35.0`; adopted `v`-prefixed tag per aquasecurity's supply chain security migration
+- Bumped `actions/checkout` from v4 to v6 and `github/codeql-action` from v3 to v4 via Dependabot
+- `make serve` now warns when `HOST` is not `127.0.0.1` and `API_KEY` is empty
+- Traefik integration is now opt-in via `compose.traefik.yml` override — `docker compose up` no longer requires an external Traefik network
+- CHANGELOG versioning corrected from SemVer to CalVer
+- Linked Apache 2.0 LICENSE by name in README footer
+- Aligned `AGENTS.md` and `CLAUDE.md` with current project state: WSL-only Windows, full targets table, Traefik override pattern, API key warning, `CADDY.md`/`CONTRIBUTING.md` in docs
 
 ### Fixed
 - Fixed the `OPENCODE.md` integration guide to use the correct `provider` record and `options` schema required by OpenCode
 - Fixed a corrupted `Makefile` that was causing syntax errors during `make serve`
-- Fixed `make serve` hanging silently when a model was not yet downloaded — Makefile now searches `~/.cache/huggingface/hub` via `find -L` instead of `hf download`, preventing implicit background downloads for large models
-- Fixed Qwen3.5-27B profile filenames (were `Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled.Q*.gguf`, actual filenames are `Qwen3.5-27B.Q*.gguf`); added `mmproj-BF16.gguf` to `DOWNLOAD_INCLUDE` as the repo includes a vision encoder
+- Fixed `make serve` hanging silently when a model was not yet downloaded — Makefile now searches `~/.cache/huggingface/hub` via `find -L` instead of `hf download`
+- Fixed Qwen3.5-27B profile filenames; added `mmproj-BF16.gguf` to `DOWNLOAD_INCLUDE` as the repo includes a vision encoder
 - Fixed tilde expansion in `Makefile` to ensure robust path handling for all model-related files
+- Pushed `2026-03-27` tag to remote so CHANGELOG comparison URLs resolve
+- Excluded `instagram.com` from lychee link checker (returns 429 for bots)
+- Fixed lychee `--exclude-mail` flag (removed in v0.23.0); replaced with `--exclude 'mailto:'`
 
 ## [2026-03-27]
 
@@ -119,7 +110,6 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 - Changed default GPU offload from `99` to `-1` to match modern llama.cpp usage better
 - Added `METRICS=1` support for exposing llama-server metrics
 
-[Unreleased]: https://github.com/a1exus/koda/compare/2026-04-03.1...HEAD
-[2026-04-03.1]: https://github.com/a1exus/koda/compare/2026-04-03...2026-04-03.1
+[Unreleased]: https://github.com/a1exus/koda/compare/2026-04-03...HEAD
 [2026-04-03]: https://github.com/a1exus/koda/compare/2026-03-27...2026-04-03
 [2026-03-27]: https://github.com/a1exus/koda/releases/tag/2026-03-27
