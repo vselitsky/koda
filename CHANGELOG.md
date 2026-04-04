@@ -30,6 +30,12 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 - CHANGELOG versioning corrected from SemVer to CalVer
 - Linked Apache 2.0 LICENSE by name in README footer
 - `MEM_RESERVE` and `make smoke-test` added to AGENTS.md reference tables
+- Bumped `actions/checkout` from v4 to v6 and `github/codeql-action` from v3 to v4 via Dependabot
+- Aligned `AGENTS.md` and `CLAUDE.md` with current project state: WSL-only Windows, full targets table, Traefik override pattern, API key warning, `CADDY.md`/`CONTRIBUTING.md` in docs, CalVer label, Kimi-K2.5 size fix
+
+### Fixed
+- Pushed `2026-03-27` tag to remote so CHANGELOG comparison URLs resolve
+- Excluded `instagram.com` from lychee link checker (returns 429 for bots)
 
 ## [2026-04-03]
 
