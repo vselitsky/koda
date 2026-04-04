@@ -1,4 +1,6 @@
-# Koda: Local LLM Orchestrator 🎛️
+<p align="center">
+  <img src="./assets/logo.svg" alt="Koda: Local LLM Orchestrator" width="560"/>
+</p>
 
 Run AI models on your own machine. Pick a model, run one command, get a chat interface and an API — no cloud, no accounts, no data leaving your device.
 
