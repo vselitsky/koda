@@ -27,7 +27,7 @@ winget install junegunn.fzf
 winget install Python.Python.3
 pip install huggingface_hub[cli]
 ```
-`make` requires Git Bash, MSYS2, or WSL on Windows.
+`make` requires WSL on Windows: `sudo apt update && sudo apt install git make`
 
 **Docker** — no binaries required. See `compose.yaml` and `GEMINI.md`. GPU passthrough works on NVIDIA/AMD Linux only; Apple Silicon and Windows are CPU-only in Docker.
 
@@ -85,7 +85,9 @@ Use `make` targets — do not invoke `llama-cli` or `llama-server` directly:
 | `make download` | Download the model via hf CLI |
 | `make list` | List all profiles in `profiles/` |
 | `make select` | Interactively select a profile (requires `fzf` or `gum`) |
+| `make cache` | Show what models are in the local Hugging Face cache |
 | `make check` | Verify required binaries are installed and on `PATH` |
+| `make check-model` | Verify the model file for the given `ENV` is present |
 | `make smoke-test` | Hit `/health` on `HOST:PORT` and verify the server is responding |
 | `make export-opencode` | Print OpenCode provider config snippet for the current profile |
 | `make export-vscode` | Print VS Code `customOAIModels` snippet for the current profile |
@@ -145,4 +147,4 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-Nemotron-Nano-3-30B.F16` / `BF16` | `lmstudio-community` / `unsloth` | 63 GB | Mamba-2 MoE hybrid, 2 shards |
 | `.env-Nemotron-3-Super-120B.Q4_K` | `ggml-org/Nemotron-3-Super-120B-GGUF` | 69.9 GB | Mamba-2 MoE hybrid |
 | `.env-Nemotron-3-Super-120B.Q4_K_M` / `Q8_0` | `unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF` | 83–129 GB | Mamba-2 MoE hybrid, 3–4 shards |
-| `.env-Kimi-K2.5.Q4_X` | `AesSedai/Kimi-K2.5-GGUF` | 544 GiB | 14 shards, extreme scale |
+| `.env-Kimi-K2.5.Q4_X` | `AesSedai/Kimi-K2.5-GGUF` | ~584 GB | 14 shards, extreme scale |

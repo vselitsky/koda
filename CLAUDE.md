@@ -11,12 +11,15 @@ There is also a containerized deployment path via `compose.yaml`, built around t
 ## Commands
 
 ```bash
-make serve    ENV=.env-<model>.<quant>   # Start built-in WebUI + OpenAI-compatible API server
-make chat     ENV=.env-<model>.<quant>   # Interactive terminal chat session
-make download ENV=.env-<model>.<quant>   # Download model from HuggingFace
-make list                                 # List all available model profiles
-make select                               # Interactively select a profile (fzf/gum)
-make check                                # Verify required binaries are on PATH
+make serve       ENV=.env-<model>.<quant>   # Start built-in WebUI + OpenAI-compatible API server
+make chat        ENV=.env-<model>.<quant>   # Interactive terminal chat session
+make download    ENV=.env-<model>.<quant>   # Download model from HuggingFace
+make list                                    # List all available model profiles
+make select                                  # Interactively select a profile (fzf/gum)
+make cache                                   # Show local Hugging Face cache contents
+make check                                   # Verify required binaries are on PATH
+make check-model ENV=.env-<model>.<quant>   # Verify the model file is present
+make smoke-test                              # Check the server is responding on HOST:PORT
 make export-opencode ENV=.env-<model>.<quant>  # Print OpenCode config snippet for current profile
 make export-vscode   ENV=.env-<model>.<quant>  # Print VS Code config snippet for current profile
 ```
@@ -24,9 +27,9 @@ make export-vscode   ENV=.env-<model>.<quant>  # Print VS Code config snippet fo
 
 **External dependencies:** `llama-server`, `llama-cli`, `hf` (huggingface-cli), `fzf` or `gum` (optional, for `make select`)
 
-**Windows:** use `winget install ggml-org.llama.cpp`, `winget install Python.Python.3`, `pip install huggingface_hub[cli]`. `make` requires Git Bash, MSYS2, or WSL.
+**Windows:** use `winget install ggml-org.llama.cpp`, `winget install Python.Python.3`, `pip install huggingface_hub[cli]`. `make` requires WSL: `sudo apt update && sudo apt install git make`.
 
-**Docker:** `docker compose --env-file profiles/.env-<model>.<quant> up -d` — no local binaries needed. GPU works on NVIDIA/AMD Linux only; Apple Silicon and Windows are CPU-only in Docker and require the native `make` path for GPU acceleration.
+**Docker:** `docker compose --env-file profiles/.env-<model>.<quant> up -d` — no local binaries needed. GPU works on NVIDIA/AMD Linux only; Apple Silicon and Windows are CPU-only in Docker. For Traefik: `docker compose -f compose.yaml -f compose.traefik.yml --env-file profiles/... up -d` (assumes Traefik is already running).
 
 ## Architecture
 
@@ -46,9 +49,10 @@ Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
 - **Context window**: `CTX=0` uses the model's native window.
 - **GPU offload**: `GPU_LAYERS=-1` offloads maximum layers to GPU.
 - **Prompt format**: Prefers embedded Jinja templates; set `PROMPT_FORMAT=template` to force `CHAT_TPL`.
-- **Docker Compose**: Uses a healthcheck to ensure the model is loaded before reporting "healthy". GPU passthrough works on NVIDIA/AMD Linux; Apple Silicon and Windows are CPU-only in Docker.
+- **Docker Compose**: Uses a healthcheck to ensure the model is loaded before reporting "healthy". GPU passthrough works on NVIDIA/AMD Linux; Apple Silicon and Windows are CPU-only in Docker. Traefik integration is via `compose.traefik.yml` override — never add Traefik network/labels to `compose.yaml` directly.
+- **API key warning**: `make serve` warns if `HOST` is not `127.0.0.1` and `API_KEY` is empty.
 - **Multimodal**: Koda auto-detects `mmproj` files in `MODEL_DIR`. For multimodal profiles, `DOWNLOAD_INCLUDE` fetches both the model and mmproj in one `make download` call.
-- **Bundled profiles**: See `profiles/README.md` for the full catalog (Gemma 4, Qwen3.5, GPT-OSS, DeepSeek, Nemotron, Kimi-K2.5). Hardware tiers from 8 GB to 192 GB are covered.
+- **Bundled profiles**: See `profiles/README.md` for the full catalog (Gemma 4, Qwen3.5, GPT-OSS, DeepSeek, Nemotron, Kimi-K2.5). Hardware tiers from 8 GB to ~584 GB are covered.
 
 ## Documentation Files
 
@@ -60,6 +64,8 @@ Primary targets are Apple Silicon (macOS), NVIDIA (CUDA), and AMD (ROCm/OpenCL).
 | `GEMINI.md` | Detailed Docker usage and agent-specific instructions. |
 | `OPENCODE.md` | Verified configuration guide for OpenCode. |
 | `VSCODE.md` | Integration guide for VS Code extensions. |
-| `CURSOR.md` | Integration guide for Cursor (HTTPS required). |
+| `CURSOR.md` | Integration guide for Cursor (HTTPS required — Caddy, Tailscale, or Traefik). |
+| `CADDY.md` | HTTPS termination for native `make serve` (local/LAN without Tailscale). |
 | `TAILSCALE.md` | Guide for private access and multi-machine RPC pooling. |
-| `CHANGELOG.md` | Version history (Keep a Changelog format). |
+| `CONTRIBUTING.md` | How to add a model profile and pre-PR checklist. |
+| `CHANGELOG.md` | Version history (CalVer, Keep a Changelog format). |
