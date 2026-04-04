@@ -28,7 +28,7 @@ jobs:
         with:
           args: >
             --no-progress
-            --exclude-mail
+            --exclude 'mailto:'
             --exclude 'localhost'
             --exclude '127\.0\.0\.1'
             --exclude 'koda\.localhost'
