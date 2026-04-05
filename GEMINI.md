@@ -75,6 +75,8 @@ If the model isn't found in either location, `make serve`/`make chat` will fail 
 | `make list` | Lists all available model profiles in `profiles/`. |
 | `make select` | Interactively select a model profile (requires `fzf` or `gum`). |
 | `make check` | Verifies required binaries are installed and on `PATH`. |
+| `make check-model ENV=<file>` | Verifies the model file for the given `ENV` is present. |
+| `make smoke-test` | Checks that the server is responding on `HOST:PORT`. |
 | `make export-opencode` | Prints OpenCode configuration snippet for current profile. |
 | `make export-vscode` | Prints VS Code configuration snippet for current profile. |
 | `make cache` | Lists the local Hugging Face model cache (`hf cache ls`). |
@@ -83,15 +85,17 @@ If the model isn't found in either location, `make serve`/`make chat` will fail 
 
 Overrides can be passed inline to any `make` target:
 - `HOST=0.0.0.0`: Bind to all interfaces (default) or `127.0.0.1`.
-- `PORT=9090`: Change the server port.
+- `PORT=8080`: Change the server port.
 - `CTX=0`: Use model's native context size (default).
 - `CTX=16384`: Set a specific context window size to save RAM.
-- `GPU_LAYERS=0`: Disable GPU offloading.
+- `GPU_LAYERS=-1`: Offload as many layers as possible to GPU (default).
 - `METRICS=1`: Enable `llama-server` metrics.
 - `ALIAS=my-model`: Set the model ID reported by the OpenAI-compatible API.
 - `API_KEY=my-secret`: Set an API key for the server.
 - `TEMP=0.8`: Set sampling temperature (default 0.6).
 - `TOP_P=0.95`: Set top-p sampling (default 0.95).
+- `BATCH=512`: Set prompt batch size (default 512).
+- `UBATCH=512`: Set prompt micro-batch size (default 512).
 - `DRAFT_MODEL=/path/to/model`: Use a draft model for speculative decoding.
 - `EMBEDDINGS=1`: Enable embeddings support.
 - `CTX_SHIFT=1`: Enable context shifting.
@@ -106,6 +110,7 @@ Overrides can be passed inline to any `make` target:
 - **Adding Models:** Create `.env-<name>.<quant>` in the `profiles/` directory with `HF_REPO`, `MODEL_DIR`, `MODEL_FILE`, and an `ALIAS`.
 - **Multimodal Support:** If an `mmproj` file exists in the `MODEL_DIR`, Koda automatically detects and uses it.
 - **Model Identity:** Use the `ALIAS` variable to set a clean model ID (e.g., `qwen3.5-27b`) for API compatibility across different quants.
+- **Docker Memory:** Set `MEM_RESERVE=4g` (default) in `.env` to reserve memory for the container.
 - **Integrations:**
   - [OpenCode](./OPENCODE.md)
   - [Tailscale + Koda (via llama.cpp)](./TAILSCALE.md)
@@ -117,6 +122,7 @@ Overrides can be passed inline to any `make` target:
 ## Dependencies
 
 - `llama-server`, `llama-cli`, `hf` (huggingface-cli), `make`.
+- `fzf` or `gum` (optional, for `make select`).
 
 ## Runtime Defaults
 
@@ -127,5 +133,6 @@ Overrides can be passed inline to any `make` target:
 - `METRICS=0` keeps metrics off unless explicitly enabled.
 - `BATCH=512` and `UBATCH=512` are conservative server batching defaults.
 - `CTX=0` keeps the model's native context window unless explicitly overridden.
+- `GPU_LAYERS=-1` offloads all layers to GPU by default.
 
 ---
