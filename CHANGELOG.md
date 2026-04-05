@@ -7,6 +7,10 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 
 ## [Unreleased]
 
+### Added
+- Added DeepSeek-R1 671B profiles: `UD-IQ1_S` (185 GB, 4 shards), `UD-IQ2_XXS` (216 GB, 5 shards), `UD-Q2_K_XL` (250 GB, 6 shards) via `unsloth/DeepSeek-R1-GGUF-UD`; `Q3_K_M` (319 GB, 9 shards) via `bartowski/DeepSeek-R1-GGUF`
+- Added IQ1_S, IQ2_XXS, and UD-\* format entries to quantization guide in `profiles/README.md`
+
 ## [2026-04-03]
 
 ### Added

@@ -29,6 +29,7 @@ To add your local server to Copilot Chat:
          { "id": "qwen3.5-35b-a3b", "name": "Qwen 3.5 35B-A3B", "url": "http://localhost:8080/v1", "model": "qwen3.5-35b-a3b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "gpt-oss-20b", "name": "GPT-OSS 20B", "url": "http://localhost:8080/v1", "model": "gpt-oss-20b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "gpt-oss-120b", "name": "GPT-OSS 120B", "url": "http://localhost:8080/v1", "model": "gpt-oss-120b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "deepseek-r1", "name": "DeepSeek R1 671B", "url": "http://localhost:8080/v1", "model": "deepseek-r1", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "deepseek-r1-distill-qwen-32b", "name": "DeepSeek R1 Distill Qwen 32B", "url": "http://localhost:8080/v1", "model": "deepseek-r1-distill-qwen-32b", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "nemotron-nano-3-30b", "name": "Nemotron Nano 3 30B", "url": "http://localhost:8080/v1", "model": "nemotron-nano-3-30b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "nemotron-3-super-120b", "name": "Nemotron 3 Super 120B", "url": "http://localhost:8080/v1", "model": "nemotron-3-super-120b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },

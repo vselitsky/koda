@@ -36,6 +36,9 @@ GGUF models are quantized — their weights are compressed to reduce memory use 
 | **Q4_K** | ~4.5 | ~27% | 4-bit K-quant, base variant. Slightly smaller than Q4_K_M with marginally lower quality. |
 | **Q4_X** | ~4.5 | ~28% | Extended 4-bit designed for large MoE weight structures. |
 | **MXFP4** | 4 | ~25% | Microsoft Microscaling FP4. Hardware-native block-scaled 4-bit. Used by OpenAI GPT-OSS models. |
+| **IQ2_XXS** | ~2.22 | ~14% | Integer quant, 2.22-bit. Aggressive compression; reasonable quality floor for very large models (671B+). |
+| **IQ1_S** | ~1.58 | ~10% | Integer quant, 1.58-bit. Extreme compression; minimum viable floor for 671B-class models only. |
+| **UD-\*** | varies | varies | Unsloth Dynamic: per-layer mixed precision — critical matrices kept at higher bits for better quality at the same average bit-width. Prefix on quant name (e.g. `UD-IQ2_XXS`). |
 
 **VRAM/RAM rule of thumb:** file size + ~1–2 GB overhead for the KV cache at default context.
 Sizes marked `~` are estimates from standard bit-rate formulas; all others are exact.
@@ -173,9 +176,29 @@ Sharded across 3 GGUF files. Requires roughly 80 GB of VRAM/RAM for full GPU acc
 
 ---
 
-### DeepSeek-R1-Distill-Qwen-32B · DeepSeek
+### DeepSeek-R1 · DeepSeek
 
-The original DeepSeek-R1 is a 671B MoE — impractical locally. This 32B distilled checkpoint is the recommended local stand-in. Outputs reasoning in `<think>...</think>` blocks before the final answer. Avoid system prompts; let the model open with `<think>` naturally.
+#### DeepSeek-R1 671B (MoE, 671B total / 37B active)
+
+The full DeepSeek-R1. Requires extreme hardware — 192 GB minimum for the smallest quantization. All variants are sharded across multiple GGUF files; llama-server loads them automatically from the first shard. Outputs reasoning in `<think>...</think>` blocks before the final answer. Avoid system prompts; let the model open with `<think>` naturally.
+
+Unsloth Dynamic (`UD-*`) profiles use per-layer mixed precision — critical matrices are kept at higher bits while the MoE experts are compressed more aggressively. This gives meaningfully better quality than naive same-bit quants at an equivalent size, and is the recommended source for sub-256 GB variants.
+
+| Profile | Size | Format | Source | Shards |
+| --- | --- | --- | --- | --- |
+| `.env-DeepSeek-R1.UD-IQ1_S` | 185 GB | UD-IQ1_S | unsloth | 4 |
+| `.env-DeepSeek-R1.UD-IQ2_XXS` | 216 GB | UD-IQ2_XXS | unsloth | 5 |
+| `.env-DeepSeek-R1.UD-Q2_K_XL` | 250 GB | UD-Q2_K_XL | unsloth | 6 |
+| `.env-DeepSeek-R1.Q3_K_M` | 319 GB | Q3_K_M | bartowski | 9 |
+
+**ALIAS:** `deepseek-r1`
+**Hardware:** 192 GB+ unified memory (M2/M3 Ultra) or multi-GPU with NVLink / RPC pooling
+**Sampling:** `TEMP=0.6`, `TOP_P=0.95` (Koda defaults match DeepSeek's recommendation)
+**Sources:** [unsloth/DeepSeek-R1-GGUF-UD](https://huggingface.co/unsloth/DeepSeek-R1-GGUF-UD) · [bartowski/DeepSeek-R1-GGUF](https://huggingface.co/bartowski/DeepSeek-R1-GGUF) · [deepseek-ai/DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1)
+
+#### DeepSeek-R1-Distill-Qwen-32B
+
+The recommended starting point for most hardware. This 32B distilled checkpoint captures most of R1's reasoning capability. Outputs reasoning in `<think>...</think>` blocks. Avoid system prompts; let the model open with `<think>` naturally.
 
 | Profile | Size | Format |
 | --- | --- | --- |
@@ -246,6 +269,8 @@ Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
 | 32–48 GB VRAM / RAM | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
 | 64–96 GB VRAM / RAM | `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
 | 128–192 GB VRAM / RAM | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |
+| 192–256 GB unified memory | `.env-DeepSeek-R1.UD-IQ1_S` (185 GB) · `.env-DeepSeek-R1.UD-IQ2_XXS` (216 GB) · `.env-DeepSeek-R1.UD-Q2_K_XL` (250 GB) |
+| 320 GB+ / multi-GPU | `.env-DeepSeek-R1.Q3_K_M` (319 GB) |
 | Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (~584 GB) |
 
 ---

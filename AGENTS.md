@@ -113,6 +113,22 @@ llama.cpp is pre-built via Homebrew. There is nothing to compile or install beyo
 - **Speculative Decoding:** Enabled via `DRAFT_MODEL`.
 - **Context Shifting:** Enabled via `CTX_SHIFT=1`.
 
+## Validation & CI
+
+To maintain repository integrity, use these tools before committing changes:
+
+| Tool | Purpose | Command |
+| --- | --- | --- |
+| `validate-profiles.sh` | Checks profiles for required fields and duplicate aliases | `sh scripts/validate-profiles.sh` |
+| `lychee` | Fast, local link checker for Markdown files | `lychee --exclude 'mailto:' --exclude 'localhost' '**/*.md'` |
+| `shellcheck` | Lints shell scripts in `scripts/` | `shellcheck scripts/*.sh` |
+
+**GitHub Actions:**
+- `validate-profiles.yml`: Runs on every PR to ensure profile consistency.
+- `link-check.yml`: Nightly and PR-based link validation using lychee.
+- `shellcheck.yml`: Automated linting for scripts.
+- `trivy-scan.yml`: Security scanning for vulnerabilities and misconfigurations.
+
 ## Adding a New Model Profile
 
 When adding a new `.env-*` profile, update these files to keep everything in sync:
@@ -147,4 +163,8 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-Nemotron-Nano-3-30B.F16` / `BF16` | `lmstudio-community` / `unsloth` | 63 GB | Mamba-2 MoE hybrid, 2 shards |
 | `.env-Nemotron-3-Super-120B.Q4_K` | `ggml-org/Nemotron-3-Super-120B-GGUF` | 69.9 GB | Mamba-2 MoE hybrid |
 | `.env-Nemotron-3-Super-120B.Q4_K_M` / `Q8_0` | `unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF` | 83–129 GB | Mamba-2 MoE hybrid, 3–4 shards |
+| `.env-DeepSeek-R1.UD-IQ1_S` | `unsloth/DeepSeek-R1-GGUF-UD` | 185 GB | 4 shards, 192 GB+ unified memory |
+| `.env-DeepSeek-R1.UD-IQ2_XXS` | `unsloth/DeepSeek-R1-GGUF-UD` | 216 GB | 5 shards, recommended minimum quality |
+| `.env-DeepSeek-R1.UD-Q2_K_XL` | `unsloth/DeepSeek-R1-GGUF-UD` | 250 GB | 6 shards, best quality under 256 GB |
+| `.env-DeepSeek-R1.Q3_K_M` | `bartowski/DeepSeek-R1-GGUF` | 319 GB | 9 shards, 3-bit sweet spot |
 | `.env-Kimi-K2.5.Q4_X` | `AesSedai/Kimi-K2.5-GGUF` | ~584 GB | 14 shards, extreme scale |
