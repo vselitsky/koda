@@ -44,7 +44,9 @@ This guide explains how to use OpenCode with the local inference server provided
            "gemma-4-e4b-it": { "name": "Gemma 4 E4B Instruct (Local)" },
            "gemma-4-26b-a4b-it": { "name": "Gemma 4 26B-A4B Instruct (Local)" },
            "gemma-4-31b-it": { "name": "Gemma 4 31B Instruct (Local)" },
-           "nemotron-nano-3-30b": { "name": "Nemotron Nano 3 30B (Local)" },
+           "nemotron-3-nano-4b": { "name": "Nemotron 3 Nano 4B (Local)" },
+          "nemotron-cascade-2-30b": { "name": "Nemotron Cascade 2 30B (Local)" },
+          "nemotron-nano-3-30b": { "name": "Nemotron Nano 3 30B (Local)" },
            "nemotron-3-super-120b": { "name": "Nemotron 3 Super 120B (Local)" }
          }
        }

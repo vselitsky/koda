@@ -291,6 +291,31 @@ Distilled from the updated May 2028 R1. Uses Qwen3-8B as the student model — b
 
 NVIDIA's Nemotron family — Mamba-2 + MoE hybrid architecture (LatentMoE). GGUFs sourced from ggml-org (official) and community converters (unsloth, lmstudio-community). Well-suited for Apple Silicon with large unified memory (M-series Ultra scales to 192 GB).
 
+#### Nemotron-3-Nano-4B
+
+Small single-file model from NVIDIA. Official GGUF published directly by NVIDIA. Hybrid Mamba-2 + MoE + Attention architecture (`nemotron_h`), 1M native context window, reasoning output in `<think>...</think>` blocks.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Nemotron-3-Nano-4B.Q4_K_M` | 2.84 GB | Q4_K_M |
+
+**ALIAS:** `nemotron-3-nano-4b`
+**Sources:** [nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF) · [nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16)
+
+#### Nemotron-Cascade-2-30B (MoE, 30B total / 3B active)
+
+Second-generation Cascade model (March 2026). Same hybrid Mamba-2 + MoE architecture as Nemotron-3, with improved reasoning. Outputs reasoning in `<think>...</think>` blocks. GGUFs from bartowski.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Nemotron-Cascade-2-30B.Q4_K_M` | 24.73 GB | Q4_K_M |
+| `.env-Nemotron-Cascade-2-30B.Q8_0` | 33.59 GB | Q8_0 |
+
+**ALIAS:** `nemotron-cascade-2-30b`
+**Sources:** [bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF](https://huggingface.co/bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF) · [nvidia/Nemotron-Cascade-2-30B-A3B](https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B)
+
+> **FP8 / NVFP4 / Base variants:** The `nvidia/` FP8, NVFP4, and Base repos are not compatible with standard llama.cpp — FP8/NVFP4 use NVIDIA's modelopt format requiring TensorRT-LLM; Base models lack instruction tuning. Use the GGUF profiles above.
+
 #### Nemotron-Nano-3-30B (MoE, 30B total / 3.5B active)
 
 Instruct variant. Q4_K_M and Q8_0 from ggml-org (official); F16 and BF16 from community converters.
@@ -344,7 +369,8 @@ Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
 | Any machine (8 GB+) | `.env-gemma-4-E2B-it.Q8_0` (5 GB) · `.env-gemma-4-E4B-it.Q4_K_M` (5.3 GB) |
 | 16–24 GB VRAM / RAM | `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
 | 8–16 GB VRAM / RAM | `.env-DeepSeek-R1-Distill-Qwen-1.5B.Q8_0` (1.9 GB) · `.env-DeepSeek-R1-Distill-Qwen-7B.Q4_K_M` (4.7 GB) · `.env-DeepSeek-R1-Distill-Llama-8B.Q4_K_M` (4.9 GB) · `.env-DeepSeek-R1-0528-Qwen3-8B.Q4_K_M` (5 GB) |
-| 16–24 GB VRAM / RAM | `.env-DeepSeek-R1-Distill-Qwen-14B.Q4_K_M` (9 GB) · `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
+| 8–16 GB VRAM / RAM (cont.) | `.env-Nemotron-3-Nano-4B.Q4_K_M` (2.8 GB) |
+| 16–24 GB VRAM / RAM | `.env-DeepSeek-R1-Distill-Qwen-14B.Q4_K_M` (9 GB) · `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-Nemotron-Cascade-2-30B.Q4_K_M` (25 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
 | 32–48 GB VRAM / RAM | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q4_K_M` (20 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) |
 | 64–96 GB VRAM / RAM | `.env-DeepSeek-R1-Distill-Llama-70B.Q4_K_M` (43 GB) · `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
 | 128–192 GB VRAM / RAM | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |

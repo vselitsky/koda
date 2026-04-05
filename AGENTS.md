@@ -159,6 +159,8 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-gpt-oss-20b.MXFP4` | `ggml-org/gpt-oss-20b-GGUF` | 12.1 GB | Harmony-style prompting |
 | `.env-gpt-oss-120b.MXFP4` | `ggml-org/gpt-oss-120b-GGUF` | 63.4 GB | 3 shards, harmony-style |
 | `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` | `ggml-org/DeepSeek-R1-Distill-Qwen-32B-Q8_0-GGUF` | 34.8 GB | Reasoning, `<think>` blocks |
+| `.env-Nemotron-3-Nano-4B.Q4_K_M` | `nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF` | 2.84 GB | Official NVIDIA GGUF, reasoning, 1M ctx |
+| `.env-Nemotron-Cascade-2-30B.Q4_K_M` / `Q8_0` | `bartowski/nvidia_Nemotron-Cascade-2-30B-A3B-GGUF` | 25–34 GB | Cascade-2, reasoning, Mamba-2 MoE |
 | `.env-Nemotron-Nano-3-30B.Q4_K_M` / `Q8_0` | `ggml-org/Nemotron-Nano-3-30B-A3B-GGUF` | 25–34 GB | Mamba-2 MoE hybrid |
 | `.env-Nemotron-Nano-3-30B.F16` / `BF16` | `lmstudio-community` / `unsloth` | 63 GB | Mamba-2 MoE hybrid, 2 shards |
 | `.env-Nemotron-3-Super-120B.Q4_K` | `ggml-org/Nemotron-3-Super-120B-GGUF` | 69.9 GB | Mamba-2 MoE hybrid |
