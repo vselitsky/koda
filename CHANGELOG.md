@@ -7,6 +7,8 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 
 ## [Unreleased]
 
+## [2026-04-05]
+
 ### Added
 - Added SVG logo (`assets/logo.svg`) — animated neural network mark with gradient wordmark; replaces plain text h1 in README
 - Added Nemotron-3-Nano-4B profile: `Q4_K_M` (2.84 GB) via official `nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF`
@@ -15,6 +17,13 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 - Added DeepSeek-R1-0528 671B profile: `Q4_K_M` (~409 GB, 11 shards) via `lmstudio-community/DeepSeek-R1-0528-GGUF`
 - Added DeepSeek-R1 distill profiles: Qwen-1.5B, Qwen-7B, Llama-8B, Qwen-14B, Qwen-32B Q4_K_M, Llama-70B (Q4_K_M/Q8_0) via `bartowski`; R1-0528-Qwen3-8B (Q4_K_M/Q8_0) via `unsloth`
 - Added IQ1_S, IQ2_XXS, and UD-\* format entries to quantization guide in `profiles/README.md`
+
+### Changed
+- Windows quick start simplified: Docker recommended; native path via WSL only (removed winget block)
+- Local config files (`opencode.json`, `chatLanguageModels.json`) labeled "local only" in contributor checklist
+- GEMINI.md: fixed duplicate `### 3.` section heading
+- profiles/README.md: corrected DeepSeek-R1-0528 date (May 2025, not 2028); restructured Recommended Starting Points with a 24–32 GB tier
+- OPENCODE.md, VSCODE.md: added `make export-opencode` / `make export-vscode` hints
 
 ## [2026-04-03]
 
@@ -119,6 +128,7 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 - Changed default GPU offload from `99` to `-1` to match modern llama.cpp usage better
 - Added `METRICS=1` support for exposing llama-server metrics
 
-[Unreleased]: https://github.com/a1exus/koda/compare/2026-04-03...HEAD
+[Unreleased]: https://github.com/a1exus/koda/compare/2026-04-05...HEAD
+[2026-04-05]: https://github.com/a1exus/koda/compare/2026-04-03...2026-04-05
 [2026-04-03]: https://github.com/a1exus/koda/compare/2026-03-27...2026-04-03
 [2026-03-27]: https://github.com/a1exus/koda/releases/tag/2026-03-27
