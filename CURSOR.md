@@ -52,4 +52,4 @@ See [profiles/README.md](./profiles/README.md#api-identity-aliases) for the full
 ## Notes
 
 - Cursor stores one active model at a time. Switch models in the model picker as you swap `make serve` profiles.
-- Reasoning models (DeepSeek, Qwen3.5-27B) output `<think>...</think>` blocks before the final answer — Cursor displays these in the chat.
+- Reasoning models (DeepSeek, GLM-4.7, GLM-5.1, MiniMax-M2.x, Qwen3.5 distills) output `<think>...</think>` blocks before the final answer — Cursor displays these in the chat.

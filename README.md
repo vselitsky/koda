@@ -23,6 +23,7 @@ Deployment paths: native `make` (full GPU via Metal/CUDA/ROCm) or Docker Compose
 - [🚀 Quick Start](#-quick-start)
 - [🛠️ Key Workflows](#️-key-workflows)
 - [🐳 Docker Compose](#-docker-compose)
+- [🖥️ Recommended Hardware](#️-recommended-hardware)
 - [🛡️ Security & Privacy](#️-security--privacy)
 - [📚 Documentation Index](#-documentation-index)
 - [🏗️ Built With](#️-built-with)
@@ -139,6 +140,26 @@ docker compose --env-file profiles/.env-Qwen3.5-27B.Q4_K_M up -d
 > **Apple Silicon and Windows users:** use the native `make` path (Options A / B above) to get GPU acceleration. Docker is fine for CPU-only use or quick testing.
 
 See [GEMINI.md](./GEMINI.md) for full Docker usage and configuration details.
+
+---
+
+## 🖥️ Recommended Hardware
+
+Koda runs on any machine that can run llama.cpp. The limiting factor is always memory — you need enough RAM or VRAM to hold the model weights, plus a few GB for the KV cache.
+
+| Hardware | Memory | What fits |
+| :--- | :--- | :--- |
+| **Any machine** | 1–8 GB | Ultra-small — Qwen3.5-0.8B (0.56 GB), Qwen3.5-2B (1.3 GB), Qwen3.5-4B (2.9 GB), DeepSeek-R1-Distill-Qwen-1.5B (1.1 GB) |
+| **Any modern laptop / desktop** | 8–16 GB | Small distills — Nemotron-3-Nano-4B (2.8 GB), DeepSeek-R1-Distill-Qwen-7B (4.7 GB), Gemma 4 E4B (5.3 GB), Qwen3.5-9B (5.9 GB) |
+| **Apple Silicon — M-series (base)** | 16–32 GB | Gemma 4 31B Q4, Qwen3.5-27B, DeepSeek-R1 distills up to 32B, GLM-4.7-Flash Q8 |
+| **Apple Silicon — M-series Pro / Max** | 48–128 GB | Nemotron-3-Super-120B Q4, GPT-OSS 120B, MiniMax-M2.7/M2.1 IQ2_XXS, GLM-4.7 IQ2_XXS |
+| **[NVIDIA DGX Spark™](https://amzn.to/47ZeWqZ)** | **128 GB unified** | Full-quality frontier models — GLM-4.7 IQ2_XXS (89 GB), MiniMax-M2.1/M2.7 Q4_K_M (139 GB), Nemotron-3-Super-120B Q8 (129 GB). The sweet spot for single-machine frontier inference. |
+| **Apple Silicon — M-series Ultra** | 192 GB | DeepSeek-R1 671B UD-IQ1_S (185 GB), GLM-5.1 UD-IQ1_M (~206 GB) — largest single-chip footprint available |
+| **Multi-GPU / server** | 320 GB+ | DeepSeek-R1 Q3_K_M (319 GB), MiniMax-M2.1 Q4_K_M (139 GB across GPUs), Kimi-K2.5 (~584 GB via RPC pooling) |
+
+> **Note on NVIDIA DGX Spark:** The GB10 Grace Blackwell chip integrates CPU and GPU into 128 GB of shared memory — the same unified memory advantage that makes Apple Silicon compelling, but with Blackwell GPU compute. Ideal for running GLM-4.7-class models at full quality on a single desktop. [Available on Amazon](https://amzn.to/47ZeWqZ).
+
+See [profiles/README.md](./profiles/README.md#recommended-starting-points) for the full hardware-tier breakdown with specific profile recommendations.
 
 ---
 

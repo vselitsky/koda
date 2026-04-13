@@ -24,8 +24,13 @@ To add your local server to Copilot Chat:
          { "id": "gemma-4-e4b-it", "name": "Gemma 4 E4B Instruct", "url": "http://localhost:8080/v1", "model": "gemma-4-e4b-it", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "gemma-4-26b-a4b-it", "name": "Gemma 4 26B-A4B Instruct", "url": "http://localhost:8080/v1", "model": "gemma-4-26b-a4b-it", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "gemma-4-31b-it", "name": "Gemma 4 31B Instruct", "url": "http://localhost:8080/v1", "model": "gemma-4-31b-it", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "qwen3.5-0.8b", "name": "Qwen 3.5 0.8B", "url": "http://localhost:8080/v1", "model": "qwen3.5-0.8b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "qwen3.5-2b", "name": "Qwen 3.5 2B", "url": "http://localhost:8080/v1", "model": "qwen3.5-2b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "qwen3.5-4b", "name": "Qwen 3.5 4B", "url": "http://localhost:8080/v1", "model": "qwen3.5-4b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "qwen3.5-9b", "name": "Qwen 3.5 9B", "url": "http://localhost:8080/v1", "model": "qwen3.5-9b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
-         { "id": "qwen3.5-27b", "name": "Qwen 3.5 27B Reasoning Distilled", "url": "http://localhost:8080/v1", "model": "qwen3.5-27b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "qwen3.5-27b", "name": "Qwen 3.5 27B", "url": "http://localhost:8080/v1", "model": "qwen3.5-27b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "qwen3.5-122b-a10b", "name": "Qwen 3.5 122B-A10B", "url": "http://localhost:8080/v1", "model": "qwen3.5-122b-a10b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "qwen3.5-397b-a17b", "name": "Qwen 3.5 397B-A17B", "url": "http://localhost:8080/v1", "model": "qwen3.5-397b-a17b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "qwen3.5-35b-a3b", "name": "Qwen 3.5 35B-A3B", "url": "http://localhost:8080/v1", "model": "qwen3.5-35b-a3b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "gpt-oss-20b", "name": "GPT-OSS 20B", "url": "http://localhost:8080/v1", "model": "gpt-oss-20b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "gpt-oss-120b", "name": "GPT-OSS 120B", "url": "http://localhost:8080/v1", "model": "gpt-oss-120b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
@@ -42,7 +47,12 @@ To add your local server to Copilot Chat:
          { "id": "nemotron-cascade-2-30b", "name": "Nemotron Cascade 2 30B", "url": "http://localhost:8080/v1", "model": "nemotron-cascade-2-30b", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "nemotron-nano-3-30b", "name": "Nemotron Nano 3 30B", "url": "http://localhost:8080/v1", "model": "nemotron-nano-3-30b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
          { "id": "nemotron-3-super-120b", "name": "Nemotron 3 Super 120B", "url": "http://localhost:8080/v1", "model": "nemotron-3-super-120b", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
-         { "id": "kimi-k2.5", "name": "Kimi K2.5", "url": "http://localhost:8080/v1", "model": "kimi-k2.5", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 }
+         { "id": "kimi-k2.5", "name": "Kimi K2.5", "url": "http://localhost:8080/v1", "model": "kimi-k2.5", "toolCalling": true, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "glm-4.7-flash", "name": "GLM 4.7 Flash 30B", "url": "http://localhost:8080/v1", "model": "glm-4.7-flash", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "glm-4.7", "name": "GLM 4.7 358B", "url": "http://localhost:8080/v1", "model": "glm-4.7", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "glm-5.1", "name": "GLM 5.1 754B", "url": "http://localhost:8080/v1", "model": "glm-5.1", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "minimax-m2.1", "name": "MiniMax M2.1 456B", "url": "http://localhost:8080/v1", "model": "minimax-m2.1", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 },
+         { "id": "minimax-m2.7", "name": "MiniMax M2.7 230B", "url": "http://localhost:8080/v1", "model": "minimax-m2.7", "toolCalling": false, "maxInputTokens": 131072, "maxOutputTokens": 8192 }
        ]
      }
    ]

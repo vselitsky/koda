@@ -7,6 +7,19 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 
 ## [Unreleased]
 
+### Added
+- Added Recommended Hardware section to README with hardware-tier table (DGX Spark, Apple Silicon, multi-GPU)
+- Added GLM-4.7-Flash profiles: `Q4_K_M` (18.47 GB), `Q8_0` (31.84 GB) via `bartowski/zai-org_GLM-4.7-Flash-GGUF`; 30B-A3B MoE, 202k context, reasoning model
+- Added GLM-4.7 profiles: `IQ2_XXS` (88.79 GB, 3 shards), `Q4_K_M` (218.52 GB, 6 shards) via `bartowski/zai-org_GLM-4.7-GGUF`; 358B MoE (~32B active), 202k context, reasoning model
+- Added GLM-5.1 profiles: `UD-IQ1_M` (~206 GB, 6 shards), `UD-IQ2_XXS` (~221 GB, 6 shards), `UD-Q2_K_XL` (~252 GB, 7 shards) via `unsloth/GLM-5.1-GGUF`; 754B MoE with DSA, 202k context, reasoning model
+- Added MiniMax-M2.1 profiles: `IQ2_XXS` (54.73 GB, 2 shards), `Q4_K_M` (138.59 GB, 4 shards), `Q6_K` (187.81 GB, 5 shards) via `bartowski/MiniMaxAI_MiniMax-M2.1-GGUF`; 456B MoE (46B active), 192k context, agentic successor to M2.7
+- Added MiniMax-M2.7 profiles: `IQ2_XXS` (60.85 GB, 2 shards), `Q4_K_M` (138.81 GB, 4 shards), `Q6_K` (197.05 GB, 5 shards) via `bartowski/MiniMaxAI_MiniMax-M2.7-GGUF`; 230B MoE (10B active), 192k context, reasoning model
+- Added Qwen3.5 official instruct profiles via `bartowski`: 0.8B (`Q4_K_M`/`Q8_0`), 2B (`Q4_K_M`/`Q8_0`), 4B (`Q4_K_M`/`Q8_0`), 9B-Qwen (`Q4_K_M`/`Q8_0`), 27B-Qwen (`Q4_K_M`/`Q8_0`); all multimodal (mmproj)
+- Added Qwen3.5-122B-A10B profiles: `IQ2_XXS` (33.80 GB, single file), `Q4_K_M` (74.99 GB, 2 shards); MoE (10B active), multimodal (mmproj) via `bartowski/Qwen_Qwen3.5-122B-A10B-GGUF`
+- Added Qwen3.5-397B-A17B profiles: `IQ2_XXS` (106.57 GB, 3 shards), `Q4_K_M` (241.87 GB, 7 shards); MoE (17B active), multimodal (mmproj) via `bartowski/Qwen_Qwen3.5-397B-A17B-GGUF`
+- Updated README.md hardware table: added "Any machine 1–8 GB" tier for Qwen3.5 small models; added Qwen3.5-9B to 8–16 GB tier
+- Updated CURSOR.md: expanded reasoning models note to include GLM-4.7, GLM-5.1, MiniMax-M2.x
+
 ## [2026-04-05]
 
 ### Added

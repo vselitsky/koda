@@ -145,10 +145,19 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 
 | Profile | HF Repo | Size | Notes |
 | --- | --- | --- | --- |
+| `.env-Qwen3.5-0.8B.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-0.8B-GGUF` | 0.56–0.81 GB | Multimodal (mmproj) |
+| `.env-Qwen3.5-2B.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-2B-GGUF` | 1.33–2.02 GB | Multimodal (mmproj) |
+| `.env-Qwen3.5-4B.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-4B-GGUF` | 2.87–4.49 GB | Multimodal (mmproj) |
 | `.env-Qwen3.5-9B.Q4_K_M` / `Q8_0` | `HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive` | ~5–10 GB | Multimodal (mmproj) |
+| `.env-Qwen3.5-9B-Qwen.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-9B-GGUF` | 5.89–9.55 GB | Official, multimodal (mmproj) |
 | `.env-Qwen3.5-27B.Q4_K_M` / `Q8_0` | `Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF` | 17–29 GB | Reasoning distill, multimodal (mmproj) |
+| `.env-Qwen3.5-27B-Qwen.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-27B-GGUF` | 17.13–28.67 GB | Official, multimodal (mmproj) |
 | `.env-Qwen3.5-35B-A3B.Q4_K_M` / `Q8_0` | `HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive` | ~20–37 GB | MoE, multimodal (mmproj) |
 | `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` / `Q8_0` | `unsloth/Qwen3.5-35B-A3B-GGUF` | 22–37 GB | MoE, official Qwen weights |
+| `.env-Qwen3.5-122B-A10B.IQ2_XXS` | `bartowski/Qwen_Qwen3.5-122B-A10B-GGUF` | 33.80 GB | MoE, multimodal (mmproj) |
+| `.env-Qwen3.5-122B-A10B.Q4_K_M` | `bartowski/Qwen_Qwen3.5-122B-A10B-GGUF` | 74.99 GB (2 shards) | MoE, multimodal (mmproj) |
+| `.env-Qwen3.5-397B-A17B.IQ2_XXS` | `bartowski/Qwen_Qwen3.5-397B-A17B-GGUF` | 106.57 GB (3 shards) | MoE, multimodal (mmproj) |
+| `.env-Qwen3.5-397B-A17B.Q4_K_M` | `bartowski/Qwen_Qwen3.5-397B-A17B-GGUF` | 241.87 GB (7 shards) | MoE, multimodal (mmproj) |
 | `.env-gemma-4-E2B-it.Q8_0` / `F16` | `ggml-org/gemma-4-E2B-it-GGUF` | 5–9 GB | Multimodal (mmproj) |
 | `.env-gemma-4-E4B-it.Q4_K_M` / `Q8_0` / `F16` | `ggml-org/gemma-4-E4B-it-GGUF` | 5–15 GB | Multimodal (mmproj) |
 | `.env-gemma-4-26B-A4B-it.Q4_K_M` / `Q8_0` / `F16` | `ggml-org/gemma-4-26B-A4B-it-GGUF` | 17–51 GB | MoE, multimodal (mmproj) |
@@ -175,4 +184,17 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-DeepSeek-R1.UD-Q2_K_XL` | `unsloth/DeepSeek-R1-GGUF-UD` | 250 GB | 6 shards, best quality under 256 GB |
 | `.env-DeepSeek-R1.Q3_K_M` | `bartowski/DeepSeek-R1-GGUF` | 319 GB | 9 shards, 3-bit sweet spot |
 | `.env-DeepSeek-R1-0528.Q4_K_M` | `lmstudio-community/DeepSeek-R1-0528-GGUF` | ~409 GB | 11 shards, updated 671B |
+| `.env-MiniMax-M2.1.IQ2_XXS` | `bartowski/MiniMaxAI_MiniMax-M2.1-GGUF` | 54.73 GB | 2 shards, 456B MoE agentic successor, reasoning |
+| `.env-MiniMax-M2.1.Q4_K_M` | `bartowski/MiniMaxAI_MiniMax-M2.1-GGUF` | 138.59 GB | 4 shards, default recommended |
+| `.env-MiniMax-M2.1.Q6_K` | `bartowski/MiniMaxAI_MiniMax-M2.1-GGUF` | 187.81 GB | 5 shards, near-lossless |
+| `.env-MiniMax-M2.7.IQ2_XXS` | `bartowski/MiniMaxAI_MiniMax-M2.7-GGUF` | 60.85 GB | 2 shards, 230B MoE, reasoning |
+| `.env-MiniMax-M2.7.Q4_K_M` | `bartowski/MiniMaxAI_MiniMax-M2.7-GGUF` | 138.81 GB | 4 shards, default recommended |
+| `.env-MiniMax-M2.7.Q6_K` | `bartowski/MiniMaxAI_MiniMax-M2.7-GGUF` | 197.05 GB | 5 shards, near-lossless |
+| `.env-GLM-4.7-Flash.Q4_K_M` | `bartowski/zai-org_GLM-4.7-Flash-GGUF` | 18.47 GB | Single file, 30B-A3B MoE, reasoning |
+| `.env-GLM-4.7-Flash.Q8_0` | `bartowski/zai-org_GLM-4.7-Flash-GGUF` | 31.84 GB | Single file, near-lossless |
+| `.env-GLM-4.7.IQ2_XXS` | `bartowski/zai-org_GLM-4.7-GGUF` | 88.79 GB | 3 shards, 358B MoE, reasoning |
+| `.env-GLM-4.7.Q4_K_M` | `bartowski/zai-org_GLM-4.7-GGUF` | 218.52 GB | 6 shards, default recommended |
+| `.env-GLM-5.1.UD-IQ1_M` | `unsloth/GLM-5.1-GGUF` | ~206 GB | 6 shards, 192 GB+ unified memory, reasoning |
+| `.env-GLM-5.1.UD-IQ2_XXS` | `unsloth/GLM-5.1-GGUF` | ~221 GB | 6 shards, recommended minimum quality |
+| `.env-GLM-5.1.UD-Q2_K_XL` | `unsloth/GLM-5.1-GGUF` | ~252 GB | 7 shards, best quality under 256 GB |
 | `.env-Kimi-K2.5.Q4_X` | `AesSedai/Kimi-K2.5-GGUF` | ~584 GB | 14 shards, extreme scale |

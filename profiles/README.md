@@ -98,6 +98,42 @@ Google's Gemma 4 multimodal model family. All instruct variants include a vision
 
 ### Qwen3.5 · Alibaba
 
+#### Qwen3.5-0.8B · Official
+
+Official Alibaba instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-0.8B.Q4_K_M` | 0.56 GB | Q4_K_M |
+| `.env-Qwen3.5-0.8B.Q8_0` | 0.81 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-0.8b`
+**Sources:** [bartowski/Qwen_Qwen3.5-0.8B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-0.8B-GGUF) · [Qwen/Qwen3.5-0.8B](https://huggingface.co/Qwen/Qwen3.5-0.8B)
+
+#### Qwen3.5-2B · Official
+
+Official Alibaba instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-2B.Q4_K_M` | 1.33 GB | Q4_K_M |
+| `.env-Qwen3.5-2B.Q8_0` | 2.02 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-2b`
+**Sources:** [bartowski/Qwen_Qwen3.5-2B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF) · [Qwen/Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B)
+
+#### Qwen3.5-4B · Official
+
+Official Alibaba instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-4B.Q4_K_M` | 2.87 GB | Q4_K_M |
+| `.env-Qwen3.5-4B.Q8_0` | 4.49 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-4b`
+**Sources:** [bartowski/Qwen_Qwen3.5-4B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF) · [Qwen/Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B)
+
 #### Qwen3.5-9B · HauhauCS Uncensored
 
 Converted to GGUF by HauhauCS. Includes a vision encoder (`mmproj`) — Koda auto-detects it for multimodal use.
@@ -109,6 +145,20 @@ Converted to GGUF by HauhauCS. Includes a vision encoder (`mmproj`) — Koda aut
 
 **ALIAS:** `qwen3.5-9b`
 **Source:** [HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive](https://huggingface.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive)
+
+#### Qwen3.5-9B · Official
+
+Official Alibaba instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding. Use this profile for the standard (non-uncensored) version.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-9B-Qwen.Q4_K_M` | 5.89 GB | Q4_K_M |
+| `.env-Qwen3.5-9B-Qwen.Q8_0` | 9.55 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-9b`
+**Sources:** [bartowski/Qwen_Qwen3.5-9B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF) · [Qwen/Qwen3.5-9B](https://huggingface.co/Qwen/Qwen3.5-9B)
+
+> Both the HauhauCS and Official variants share the alias `qwen3.5-9b`. Only serve one at a time — whichever you start with `make serve` is what clients will see.
 
 #### Qwen3.5-35B-A3B · HauhauCS Uncensored (MoE, 3B activated)
 
@@ -147,6 +197,45 @@ Reasoning-focused 27B distill. Includes a vision encoder (`mmproj-BF16.gguf`) �
 
 **ALIAS:** `qwen3.5-27b`
 **Sources:** [Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF) · [Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled)
+
+#### Qwen3.5-27B · Official
+
+Official Alibaba instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding. Use this profile for the standard (non-distilled) version.
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-Qwen3.5-27B-Qwen.Q4_K_M` | 17.13 GB | Q4_K_M |
+| `.env-Qwen3.5-27B-Qwen.Q8_0` | 28.67 GB | Q8_0 |
+
+**ALIAS:** `qwen3.5-27b`
+**Sources:** [bartowski/Qwen_Qwen3.5-27B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-27B-GGUF) · [Qwen/Qwen3.5-27B](https://huggingface.co/Qwen/Qwen3.5-27B)
+
+> Both the Jackrong Reasoning Distilled and Official variants share the alias `qwen3.5-27b`. Only serve one at a time — whichever you start with `make serve` is what clients will see.
+
+#### Qwen3.5-122B-A10B (MoE, 122B total / 10B active)
+
+Official Alibaba MoE instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding.
+
+| Profile | Size | Format | Notes |
+| --- | --- | --- | --- |
+| `.env-Qwen3.5-122B-A10B.IQ2_XXS` | 33.80 GB | IQ2_XXS | Single file |
+| `.env-Qwen3.5-122B-A10B.Q4_K_M` | 74.99 GB | Q4_K_M | 2 shards |
+
+**ALIAS:** `qwen3.5-122b-a10b`
+**Sources:** [bartowski/Qwen_Qwen3.5-122B-A10B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-122B-A10B-GGUF) · [Qwen/Qwen3.5-122B-A10B](https://huggingface.co/Qwen/Qwen3.5-122B-A10B)
+
+#### Qwen3.5-397B-A17B (MoE, 397B total / 17B active)
+
+Official Alibaba flagship MoE instruct weights in GGUF via bartowski. Multimodal — includes a vision encoder (`mmproj`) for image understanding. Requires extreme hardware for the Q4_K_M variant.
+
+| Profile | Size | Format | Shards |
+| --- | --- | --- | --- |
+| `.env-Qwen3.5-397B-A17B.IQ2_XXS` | 106.57 GB | IQ2_XXS | 3 |
+| `.env-Qwen3.5-397B-A17B.Q4_K_M` | 241.87 GB | Q4_K_M | 7 |
+
+**ALIAS:** `qwen3.5-397b-a17b`
+**Hardware:** 128 GB+ (IQ2_XXS) or 256 GB+ unified memory / multi-GPU (Q4_K_M)
+**Sources:** [bartowski/Qwen_Qwen3.5-397B-A17B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-397B-A17B-GGUF) · [Qwen/Qwen3.5-397B-A17B](https://huggingface.co/Qwen/Qwen3.5-397B-A17B)
 
 ---
 
@@ -348,6 +437,89 @@ Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
 
 ---
 
+### MiniMax-M2.1 · MiniMax AI
+
+~456B MoE (256 experts, 8 active, ~46B active per token), 192k native context. The agentic successor to M2.7 — significantly stronger on coding, tool use, and multilingual SWE tasks (SWE-bench Verified 74.0%, Multi-SWE-bench 49.4%). Reasoning model — outputs in `<think>...</think>` blocks. English and Chinese. GGUFs from bartowski (imatrix-calibrated).
+
+| Profile | Size | Format | Shards |
+| --- | --- | --- | --- |
+| `.env-MiniMax-M2.1.IQ2_XXS` | 54.73 GB | IQ2_XXS | 2 |
+| `.env-MiniMax-M2.1.Q4_K_M` | 138.59 GB | Q4_K_M | 4 |
+| `.env-MiniMax-M2.1.Q6_K` | 187.81 GB | Q6_K | 5 |
+
+**ALIAS:** `minimax-m2.1`
+**Sampling:** `TEMP=1.0`, `TOP_P=0.95` (from official `generation_config.json`)
+**Sources:** [bartowski/MiniMaxAI_MiniMax-M2.1-GGUF](https://huggingface.co/bartowski/MiniMaxAI_MiniMax-M2.1-GGUF) · [MiniMaxAI/MiniMax-M2.1](https://huggingface.co/MiniMaxAI/MiniMax-M2.1)
+
+---
+
+### MiniMax-M2.7 · MiniMax AI
+
+~230B MoE (256 experts, 8 active, ~10B active per token), 192k native context. Reasoning model — outputs in `<think>...</think>` blocks. Agentic focus: coding, tool use, multi-agent collaboration, office tasks. English and Chinese. GGUFs from bartowski (imatrix-calibrated, llama.cpp b8746+).
+
+Despite the 230B total parameter count, only ~10B are active per forward pass — memory and compute requirements are much lighter than dense 230B models.
+
+| Profile | Size | Format | Shards |
+| --- | --- | --- | --- |
+| `.env-MiniMax-M2.7.IQ2_XXS` | 60.85 GB | IQ2_XXS | 2 |
+| `.env-MiniMax-M2.7.Q4_K_M` | 138.81 GB | Q4_K_M | 4 |
+| `.env-MiniMax-M2.7.Q6_K` | 197.05 GB | Q6_K | 5 |
+
+**ALIAS:** `minimax-m2.7`
+**Sampling:** `TEMP=1.0`, `TOP_P=0.95` (from official `generation_config.json`)
+**Sources:** [bartowski/MiniMaxAI_MiniMax-M2.7-GGUF](https://huggingface.co/bartowski/MiniMaxAI_MiniMax-M2.7-GGUF) · [MiniMaxAI/MiniMax-M2.7](https://huggingface.co/MiniMaxAI/MiniMax-M2.7)
+
+---
+
+### GLM-4.7 · ZAI (Zhipu AI)
+
+358B MoE (160 routed + 1 shared expert, 9 active per token, ~32B active), 202k native context. Reasoning model — outputs in `<think>...</think>` blocks with three thinking modes (interleaved, preserved, turn-level). Strong agentic coding (SWE-bench Verified 73.8%). Text-only, no mmproj. GGUFs from bartowski (imatrix-calibrated, llama.cpp b7475+).
+
+GLM-4.7-Flash is the lightweight 30B-A3B MoE variant — single-file GGUFs suitable for 24–40 GB hardware.
+
+#### GLM-4.7 (358B full)
+
+| Profile | Size | Format | Shards |
+| --- | --- | --- | --- |
+| `.env-GLM-4.7.IQ2_XXS` | 88.79 GB | IQ2_XXS | 3 |
+| `.env-GLM-4.7.Q4_K_M` | 218.52 GB | Q4_K_M | 6 |
+
+**ALIAS:** `glm-4.7`
+**Hardware:** 96 GB+ (IQ2_XXS) or 220 GB+ unified memory / multi-GPU (Q4_K_M)
+**Sources:** [bartowski/zai-org_GLM-4.7-GGUF](https://huggingface.co/bartowski/zai-org_GLM-4.7-GGUF) · [zai-org/GLM-4.7](https://huggingface.co/zai-org/GLM-4.7)
+
+#### GLM-4.7-Flash (30B-A3B)
+
+| Profile | Size | Format |
+| --- | --- | --- |
+| `.env-GLM-4.7-Flash.Q4_K_M` | 18.47 GB | Q4_K_M |
+| `.env-GLM-4.7-Flash.Q8_0` | 31.84 GB | Q8_0 |
+
+**ALIAS:** `glm-4.7-flash`
+**Sampling:** `TEMP=1.0`, `TOP_P=0.95`
+**Sources:** [bartowski/zai-org_GLM-4.7-Flash-GGUF](https://huggingface.co/bartowski/zai-org_GLM-4.7-Flash-GGUF) · [zai-org/GLM-4.7](https://huggingface.co/zai-org/GLM-4.7)
+
+---
+
+### GLM-5.1 · ZAI (Zhipu AI)
+
+754B-parameter MoE model with Dynamic Sparse Attention (DSA) and 202k native context. Reasoning model — outputs in `<think>...</think>` blocks. Agentic focus: coding, tool use, long-horizon tasks, and mathematical reasoning (SWE-Bench Pro 58.4%, AIME 2026 95.3%). English and Chinese. GGUFs from unsloth (Unsloth Dynamic 2.0, standard llama.cpp compatible).
+
+Requires extreme hardware — 192 GB minimum even for the smallest quant. All variants are sharded across multiple GGUF files.
+
+| Profile | Size | Format | Shards |
+| --- | --- | --- | --- |
+| `.env-GLM-5.1.UD-IQ1_M` | ~206 GB | UD-IQ1_M | 6 |
+| `.env-GLM-5.1.UD-IQ2_XXS` | ~221 GB | UD-IQ2_XXS | 6 |
+| `.env-GLM-5.1.UD-Q2_K_XL` | ~252 GB | UD-Q2_K_XL | 7 |
+
+**ALIAS:** `glm-5.1`
+**Hardware:** 192 GB+ unified memory (M2/M3 Ultra) or multi-GPU with NVLink / RPC pooling
+**Sampling:** `TEMP=0.6`, `TOP_P=0.95` (standard reasoning model defaults)
+**Sources:** [unsloth/GLM-5.1-GGUF](https://huggingface.co/unsloth/GLM-5.1-GGUF) · [zai-org/GLM-5.1](https://huggingface.co/zai-org/GLM-5.1)
+
+---
+
 ### Kimi-K2.5 · Moonshot AI
 
 1T-parameter MoE (32B activated). Extremely large — ~584 GB across 14 shards. Advanced profile; treat as multi-machine or server-class hardware only.
@@ -366,15 +538,15 @@ Instruct variant. Q4_K from ggml-org (official); Q4_K_M and Q8_0 from unsloth.
 
 | Hardware | Recommended profiles |
 | --- | --- |
-| Any machine (8 GB+) | `.env-gemma-4-E2B-it.Q8_0` (5 GB) · `.env-gemma-4-E4B-it.Q4_K_M` (5.3 GB) |
-| 16–24 GB VRAM / RAM | `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
-| 8–16 GB VRAM / RAM | `.env-Nemotron-3-Nano-4B.Q4_K_M` (2.8 GB) · `.env-DeepSeek-R1-Distill-Qwen-1.5B.Q8_0` (1.9 GB) · `.env-DeepSeek-R1-Distill-Qwen-7B.Q4_K_M` (4.7 GB) · `.env-DeepSeek-R1-Distill-Llama-8B.Q4_K_M` (4.9 GB) · `.env-DeepSeek-R1-0528-Qwen3-8B.Q4_K_M` (5 GB) |
-| 16–24 GB VRAM / RAM | `.env-DeepSeek-R1-Distill-Qwen-14B.Q4_K_M` (9 GB) · `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
-| 24–32 GB VRAM / RAM | `.env-Nemotron-Cascade-2-30B.Q4_K_M` (25 GB) · `.env-Nemotron-Nano-3-30B.Q4_K_M` (25 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q4_K_M` (20 GB) |
+| Any machine (4 GB+) | `.env-Qwen3.5-0.8B.Q8_0` (0.8 GB) · `.env-Qwen3.5-2B.Q4_K_M` (1.3 GB) · `.env-Qwen3.5-4B.Q4_K_M` (2.9 GB) |
+| Any machine (8 GB+) | `.env-gemma-4-E2B-it.Q8_0` (5 GB) · `.env-gemma-4-E4B-it.Q4_K_M` (5.3 GB) · `.env-Qwen3.5-4B.Q8_0` (4.5 GB) |
+| 8–16 GB VRAM / RAM | `.env-Nemotron-3-Nano-4B.Q4_K_M` (2.8 GB) · `.env-DeepSeek-R1-Distill-Qwen-1.5B.Q8_0` (1.9 GB) · `.env-DeepSeek-R1-Distill-Qwen-7B.Q4_K_M` (4.7 GB) · `.env-DeepSeek-R1-Distill-Llama-8B.Q4_K_M` (4.9 GB) · `.env-DeepSeek-R1-0528-Qwen3-8B.Q4_K_M` (5 GB) · `.env-Qwen3.5-9B-Qwen.Q4_K_M` (5.9 GB) |
+| 16–24 GB VRAM / RAM | `.env-GLM-4.7-Flash.Q4_K_M` (18 GB) · `.env-DeepSeek-R1-Distill-Qwen-14B.Q4_K_M` (9 GB) · `.env-gpt-oss-20b.MXFP4` (12 GB) · `.env-gemma-4-26B-A4B-it.Q4_K_M` (17 GB) |
+| 24–32 GB VRAM / RAM | `.env-GLM-4.7-Flash.Q8_0` (32 GB) · `.env-Nemotron-Cascade-2-30B.Q4_K_M` (25 GB) · `.env-Nemotron-Nano-3-30B.Q4_K_M` (25 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q4_K_M` (20 GB) |
 | 32–48 GB VRAM / RAM | `.env-Qwen3.5-27B.Q4_K_M` (17 GB) · `.env-gemma-4-31B-it.Q4_K_M` (19 GB) · `.env-DeepSeek-R1-Distill-Qwen-32B.Q8_0` (35 GB) · `.env-Nemotron-Cascade-2-30B.Q8_0` (34 GB) |
-| 64–96 GB VRAM / RAM | `.env-DeepSeek-R1-Distill-Llama-70B.Q4_K_M` (43 GB) · `.env-Nemotron-Nano-3-30B.Q8_0` (34 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) |
-| 128–192 GB VRAM / RAM | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-gemma-4-31B-it.F16` (61 GB) |
-| 192–256 GB unified memory | `.env-DeepSeek-R1.UD-IQ1_S` (185 GB) · `.env-DeepSeek-R1.UD-IQ2_XXS` (216 GB) · `.env-DeepSeek-R1.UD-Q2_K_XL` (250 GB) |
+| 64–96 GB VRAM / RAM | `.env-GLM-4.7.IQ2_XXS` (89 GB) · `.env-DeepSeek-R1-Distill-Llama-70B.Q4_K_M` (43 GB) · `.env-MiniMax-M2.1.IQ2_XXS` (55 GB) · `.env-MiniMax-M2.7.IQ2_XXS` (61 GB) · `.env-gemma-4-26B-A4B-it.F16` (51 GB) · `.env-Qwen3.5-122B-A10B.IQ2_XXS` (34 GB) · `.env-Qwen3.5-122B-A10B.Q4_K_M` (75 GB) |
+| 128–192 GB VRAM / RAM | `.env-Nemotron-3-Super-120B.Q4_K` (70 GB) · `.env-gpt-oss-120b.MXFP4` (63 GB) · `.env-MiniMax-M2.1.Q4_K_M` (139 GB) · `.env-MiniMax-M2.7.Q4_K_M` (139 GB) · `.env-MiniMax-M2.1.Q6_K` (188 GB) · `.env-Qwen3.5-397B-A17B.IQ2_XXS` (107 GB) |
+| 192–256 GB unified memory | `.env-GLM-4.7.Q4_K_M` (219 GB) · `.env-DeepSeek-R1.UD-IQ1_S` (185 GB) · `.env-DeepSeek-R1.UD-IQ2_XXS` (216 GB) · `.env-GLM-5.1.UD-IQ1_M` (~206 GB) · `.env-GLM-5.1.UD-IQ2_XXS` (~221 GB) · `.env-DeepSeek-R1.UD-Q2_K_XL` (250 GB) · `.env-GLM-5.1.UD-Q2_K_XL` (~252 GB) · `.env-Qwen3.5-397B-A17B.Q4_K_M` (242 GB) |
 | 320 GB+ / multi-GPU | `.env-DeepSeek-R1.Q3_K_M` (319 GB) |
 | Multi-machine / extreme scale | `.env-Kimi-K2.5.Q4_X` (~584 GB) |
 
