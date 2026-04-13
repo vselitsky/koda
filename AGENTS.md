@@ -150,7 +150,7 @@ Full catalog with sizes and hardware notes lives in `profiles/README.md`. Summar
 | `.env-Qwen3.5-4B.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-4B-GGUF` | 2.87–4.49 GB | Multimodal (mmproj) |
 | `.env-Qwen3.5-9B.Q4_K_M` / `Q8_0` | `HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive` | ~5–10 GB | Multimodal (mmproj) |
 | `.env-Qwen3.5-9B-Qwen.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-9B-GGUF` | 5.89–9.55 GB | Official, multimodal (mmproj) |
-| `.env-Qwen3.5-27B.Q4_K_M` / `Q8_0` | `Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF` | 17–29 GB | Reasoning distill, multimodal (mmproj) |
+| `.env-Qwen3.5-27B.Q2_K` / `Q3_K_M` / `Q4_K_M` / `Q8_0` | `Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF` | 10–29 GB | Reasoning distill, multimodal (mmproj) |
 | `.env-Qwen3.5-27B-Qwen.Q4_K_M` / `Q8_0` | `bartowski/Qwen_Qwen3.5-27B-GGUF` | 17.13–28.67 GB | Official, multimodal (mmproj) |
 | `.env-Qwen3.5-35B-A3B.Q4_K_M` / `Q8_0` | `HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive` | ~20–37 GB | MoE, multimodal (mmproj) |
 | `.env-Qwen3.5-35B-A3B-Qwen.Q4_K_M` / `Q8_0` | `unsloth/Qwen3.5-35B-A3B-GGUF` | 22–37 GB | MoE, official Qwen weights |

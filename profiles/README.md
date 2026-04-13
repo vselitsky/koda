@@ -192,8 +192,10 @@ Reasoning-focused 27B distill. Includes a vision encoder (`mmproj-BF16.gguf`) â€
 
 | Profile | Size | Format |
 | --- | --- | --- |
-| `.env-Qwen3.5-27B.Q4_K_M` | 16.5 GB | Q4_K_M |
-| `.env-Qwen3.5-27B.Q8_0` | 28.6 GB | Q8_0 |
+| `.env-Qwen3.5-27B.Q2_K` | 10.12 GB | Q2_K |
+| `.env-Qwen3.5-27B.Q3_K_M` | 13.29 GB | Q3_K_M |
+| `.env-Qwen3.5-27B.Q4_K_M` | 16.54 GB | Q4_K_M |
+| `.env-Qwen3.5-27B.Q8_0` | 28.60 GB | Q8_0 |
 
 **ALIAS:** `qwen3.5-27b`
 **Sources:** [Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF) Â· [Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled)

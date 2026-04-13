@@ -19,6 +19,7 @@ and this project uses [Calendar Versioning](https://calver.org/) (`YYYY-MM-DD`).
 - Added Qwen3.5-397B-A17B profiles: `IQ2_XXS` (106.57 GB, 3 shards), `Q4_K_M` (241.87 GB, 7 shards); MoE (17B active), multimodal (mmproj) via `bartowski/Qwen_Qwen3.5-397B-A17B-GGUF`
 - Updated README.md hardware table: added "Any machine 1–8 GB" tier for Qwen3.5 small models; added Qwen3.5-9B to 8–16 GB tier
 - Updated CURSOR.md: expanded reasoning models note to include GLM-4.7, GLM-5.1, MiniMax-M2.x
+- Added Qwen3.5-27B (Jackrong) profiles: `Q2_K` (10.12 GB) and `Q3_K_M` (13.29 GB) to cover 16–24 GB hardware tiers
 
 ## [2026-04-05]
 
